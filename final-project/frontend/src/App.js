@@ -5,7 +5,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import Start from 'components/Start'
 import Login from 'components/Login'
-import Main from 'components/Main'
+import ProfilePage from 'components/ProfilePage'
 import Notfound from 'components/Notfound'
 
 
@@ -27,7 +27,7 @@ export const App = () => {
     <Routes>
       <Route path='/' element={<Start />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/main' element={<Main />} />
+      <Route path='/main' element={<ProfilePage />} />
       <Route path='*' element={<Notfound />} /> 
     </Routes>
     </BrowserRouter>

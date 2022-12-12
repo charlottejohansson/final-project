@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Title, Wrapper} from 'styles/Styles';
 import styled from 'styled-components'
 
-const Main = () => {
+const ProfilePage = () => {
     const thoughtItems = useSelector((store) => store.thoughts.items);
     const dispatch = useDispatch();
     const accessToken = useSelector((store) => store.user.accessToken);
@@ -78,4 +78,4 @@ box-shadow: 8px 6px 5px -6px rgba(0,0,0,0.75);
 -moz-box-shadow: 8px 6px 5px -6px rgba(0,0,0,0.75);
 `
 
-export default Main;
+export default ProfilePage;
