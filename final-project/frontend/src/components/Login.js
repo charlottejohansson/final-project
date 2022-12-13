@@ -54,7 +54,7 @@ const Login = () => {
         <Form onSubmit={onFormSubmit}>
         <RadioButtonWrapper>
         <div>
-        <Label htmlFor="register">Register</Label>
+        <Label htmlFor="register">Register here</Label>
         <input type="radio" id="register" checked={mode === "register"} onChange={()=>setMode("register")}/>
         </div>
         <div>
