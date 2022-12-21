@@ -39,6 +39,11 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
+
+app.get("/", (req, res) => {
+  res.send("Hello Technigo!");
+});
+
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
 // npm install bcrypt
