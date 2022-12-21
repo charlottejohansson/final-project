@@ -3,7 +3,8 @@ import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "utils/utils";
 import user from "reducers/user";
-import { Form, Input, Button, Wrapper, Label, RadioButtonWrapper } from 'styles/Styles';
+import { Text } from "react-native";
+// import { Form, Input, Button, Wrapper, Label, RadioButtonWrapper } from 'styles/Styles';
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -50,9 +51,10 @@ const Login = () => {
     }
     return (
         <>
-        <Wrapper>
+        <Text>Login</Text>
+        {/* <Wrapper>
         <Form onSubmit={onFormSubmit}>
-        <RadioButtonWrapper>
+        <Button>
         <div>
         <Label htmlFor="register">Register here</Label>
         <input type="radio" id="register" checked={mode === "register"} onChange={()=>setMode("register")}/>
@@ -61,7 +63,7 @@ const Login = () => {
         <Label htmlFor="login">Login</Label>
         <input type="radio" id="login" checked={mode === "login"} onChange={()=>setMode("login")}/>
         </div>
-        </RadioButtonWrapper>
+        </Button>
             <Label htmlFor="username">Username</Label>
             <Input 
                 type="text" 
@@ -82,7 +84,7 @@ const Login = () => {
             <p style={{ fontSize: '21px', color: 'red' }}>{error}</p>
             )}
         </Form>
-        </Wrapper>
+        </Wrapper> */}
     </> 
     );
 }
