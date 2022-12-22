@@ -1,40 +1,40 @@
 import React from 'react';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import { Provider } from 'react-redux';
-// import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { Text } from "react-native";
-
-// // import Start from 'components/Start'
-// // import Login from 'components/Login'
-// // import ProfilePage from 'components/ProfilePage'
-// // import Notfound from 'components/Notfound'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 
-// import user from "./reducers/user";
-// import thoughts from "./reducers/thoughts";
+import Start from './components/Start'
+import Login from './components/Login'
+import Register from './components/Register'
+import ProfilePage from './components/ProfilePage'
+import Notfound from './components/Notfound'
 
-// const reducer = combineReducers({
-//   user: user.reducer,
-//   thoughts: thoughts.reducer,
-// });
 
-// const store = configureStore({ reducer });
+import user from "./reducers/user";
+import profiles from "./reducers/profiles";
+
+const reducer = combineReducers({
+  user: user.reducer,
+  profiles: profiles.reducer,
+});
+
+const store = configureStore({ reducer });
 
 
 export default function App() {
   return (
-//     <Provider store={store}>
-  
-  <Text>App</Text>
-//     {/* <BrowserRouter>
-//     <Routes>
-//       <Route path='/' element={<Start />} />
-//       <Route path='/login' element={<Login />} />
-//       <Route path='/main' element={<ProfilePage />} />
-//       <Route path='*' element={<Notfound />} /> 
-//     </Routes>
-//     </BrowserRouter> */}
-//     </Provider>
+    <Provider store={store}>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Start />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/main' element={<ProfilePage />} />
+      <Route path='*' element={<Notfound />} /> 
+    </Routes>
+    </BrowserRouter> 
+    </Provider>
   );
 }
 
@@ -61,49 +61,3 @@ export default function App() {
 //     justifyContent: 'center',
 //   },
 // });
-
-//-------Cecilias code----------//
-
-// import * as React from 'react';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { Splash } from './screens/Splash';
-// import { LogIn } from './screens/LogIn';
-// import { StartPage } from './screens/StartPage';
-// import { Provider } from 'react-redux';
-// import { combineReducers, configureStore } from '@reduxjs/toolkit';
-// import user from './reducers/user';
-// import { GamePage } from './screens/GamePage';
-
-// const Stack = createNativeStackNavigator();
-
-// const reducer = combineReducers({
-//   user: user.reducer
-// });
-// const store = configureStore({reducer});
-// const App = () => {
-//   return (
-//     <Provider store={store}>
-//     <NavigationContainer>
-//    <Stack.Navigator
-//       screenOptions={{
-//         headerStyle: {
-//           backgroundColor: '#2d2d2d',
-//         },
-//         headerTintColor: '#fff',
-//         headerTitleStyle: {
-//           fontWeight: 'bold',
-//         },
-//       }}
-//     >
-//     <Stack.Screen name="Home" component={Splash} options={{ title: 'My home' }}/>
-//     <Stack.Screen name="Log in" component={LogIn} options={{ title: '' }} />
-//     <Stack.Screen name="StartPage" component={StartPage} options={{ title: ' ' }}/>
-//     <Stack.Screen name="GamePage" component={GamePage} options={{ title: '' }}/>
-//     </Stack.Navigator>
-//     </NavigationContainer>
-//     </Provider>
-//   );
-// }
-
-// export default App;

@@ -121,7 +121,7 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-const ThoughtSchema = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
   message: {
     type: String,
   },
@@ -136,16 +136,16 @@ const ThoughtSchema = new mongoose.Schema({
 }); 
 
 
-const Thought = mongoose.model("Thought", ThoughtSchema);
+const Thought = mongoose.model("Profile", ProfileSchema);
 
-app.get("/thoughts", authenticateUser);
-app.get("/thoughts", async (req, res)=> {
-  const thoughts = await Thought.find({});
-  res.status(200).json({success: true, response: thoughts});
+app.get("/profiles", authenticateUser);
+app.get("/profiles", async (req, res)=> {
+  const profiles = await Thought.find({});
+  res.status(200).json({success: true, response: profiles});
 });
 
-app.post("/thoughts", authenticateUser)
-app.post("/thoughts", async (req, res) => {
+app.post("/profiles", authenticateUser)
+app.post("/profiles", async (req, res) => {
   const { message } = req.body;
   try {
     const newThought = await new Thought({message}).save();

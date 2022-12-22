@@ -6,10 +6,10 @@ import user from "/Users/josefineengdahl/Desktop/final-project/final-project/Rea
 import { StyleSheet, Text, View, TextInput, Button} from "react-native";
 
 
-const Login = () => {
+const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [mode, setMode] = useState("login");
+    const [mode, setMode] = useState("register");
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Login = () => {
                         dispatch(user.actions.setError(null));
                     });
                 } else {
-                    alert("error, could not find user - make sure you've registered and that the password is correct ");
+                    alert("error, doesn't work...");
                     batch (() => {
                         dispatch(user.actions.setUsername(null));
                         dispatch(user.actions.setUserId(null))
@@ -54,8 +54,7 @@ const Login = () => {
     }
     return (
         <View style={styles.container} onPress={(onFormSubmit)}>
-        <Text> Login page! </Text>
-
+        <Text> Register page! </Text>
             <TextInput
             placeholder="Enter username" 
             style={styles.input}
@@ -67,8 +66,7 @@ const Login = () => {
             onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
              />
 
-
-            <TextInput 
+        <TextInput 
                 placeholder="Enter Password" 
                 ref={passwordInputRef}
                 value={password} 
@@ -78,23 +76,21 @@ const Login = () => {
                 returnKeyType="next" 
              />
 
-            <Button 
-             title="login"
-             onPress={(onFormSubmit)}
-             type="submit"
-             />
 
         <Text>
-            Don't have an account?
-               <Link to='/register'> Sign up here </Link>
-            </Text>
-
+            {password && password.length < 8
+                ? 'password must be over 8 characters'
+                : ''}
             <Button 
-                title="Back to start page"
-                onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}}
+                title="Sign up"
+                onPress={(onFormSubmit)}
                 type="submit"
                 />
-         
+
+                {error !== null && (
+                <p style={{ fontSize: '21px', color: 'red' }}>{error}</p>
+            )}
+        </Text>
       </View>
     )}
 
@@ -103,7 +99,7 @@ const Login = () => {
     const styles = StyleSheet.create({
         container: {
         flex: 1,
-        backgroundColor: 'red',
+        backgroundColor: 'green',
         alignItems: 'center',
         justifyContent: 'center',
         },
@@ -111,8 +107,7 @@ const Login = () => {
 
     
 
-export default Login;
+export default Register;
 
 
-
-  
+   

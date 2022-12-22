@@ -1,5 +1,7 @@
-const BASE_URL = 
-  'https://project-auth-3adyn7z7ja-uc.a.run.app'
+const BASE_URL = "http://localhost:8080"
+
+
+  // 'https://project-auth-3adyn7z7ja-uc.a.run.app'
 
   export const API_URL = (slug) => `${BASE_URL}/${slug}`
 
@@ -11,5 +13,5 @@ export const REGISTER_URL =
 export const SIGNIN_URL =
   'https://project-auth-3adyn7z7ja-uc.a.run.app/signin';
 
-  export const THOUGHTS_URL =
-  'https://project-auth-3adyn7z7ja-uc.a.run.app/thoughts';
+  export const PROFILES_URL =
+  'https://project-auth-3adyn7z7ja-uc.a.run.app/profiles';

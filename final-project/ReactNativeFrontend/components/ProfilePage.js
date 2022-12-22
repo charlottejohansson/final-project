@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import thoughts from "reducers/thoughts";
-import { API_URL } from "utils/utils";
+import profiles from "../reducers/profiles.js";
+import { API_URL } from "/Users/josefineengdahl/Desktop/final-project/final-project/ReactNativeFrontend/utils/utils.js";
 import { useNavigate, Link } from "react-router-dom";
-// import { Title, Wrapper} from 'styles/Styles';
-// import styled from 'styled-components'
+import { StyleSheet, Text, View, Button } from "react-native";
 
 const ProfilePage = () => {
-    const thoughtItems = useSelector((store) => store.thoughts.items);
+    const profilesItems = useSelector((store) => store.profiles.items);
     const dispatch = useDispatch();
     const accessToken = useSelector((store) => store.user.accessToken);
     const navigate = useNavigate();
@@ -26,57 +25,43 @@ const ProfilePage = () => {
                 "Authorization": accessToken
             }
         }
-        fetch(API_URL("thoughts"), options)
+        fetch(API_URL("profiles"), options)
             .then(res => res.json())
             .then(data => {
                 if(data.success) {
-                    dispatch(thoughts.actions.setItems(data.response));
-                    dispatch(thoughts.actions.setError(null));
+                    dispatch(profiles.actions.setItems(data.response));
+                    dispatch(profiles.actions.setError(null));
                 } else {
-                    dispatch(thoughts.actions.setItems([]));
-                    dispatch(thoughts.actions.setError(data.response));
+                    dispatch(profiles.actions.setItems([]));
+                    dispatch(profiles.actions.setError(data.response));
                 }
             })
     }, []);
 
     return (
-        <>
-              <Text>ProfilePage</Text>
-        {/* <Wrapper>
-            <MainBox>
-                <Title>Yey! Your're now logged in!</Title> 
-                <h2>Se all posted thoughts below!</h2>
-                {thoughtItems.map((item) => {
-                    return <Thoughts key={item._id}>{item.message}</Thoughts>
-                })}
-            </MainBox> 
-         </Wrapper>   */}
-        </>
-    )
+      
+        <View style={styles.container}>
+             <Text>ProfilePage - it's working!</Text>
+
+                <Button 
+                title="Sign out"
+                onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
+                type="submit"
+                />
+         
+     </View>
+);
 }
 
-// const MainBox = styled.div`
-// background-color: pink;
-// display: flex;
-// justify-content: center;
-// align-items: center;
-// flex-direction: column;
-// text-align: center;
-// width: 50vw;
-// height: auto;
-// padding: 20px;
-// box-shadow: 8px 11px 5px -6px rgba(0,0,0,0.75);
-// -webkit-box-shadow: 8px 11px 5px -6px rgba(0,0,0,0.75);
-// -moz-box-shadow: 8px 11px 5px -6px rgba(0,0,0,0.75);
-// `
+const styles = StyleSheet.create({
+container: {
+flex: 1,
+backgroundColor: 'yellow',
+alignItems: 'center',
+justifyContent: 'center',
+},
+});
 
-// const Thoughts = styled.p`
-// display: flex;
-// padding: 10px;
-// background: #F7EFE4;
-// box-shadow: 8px 6px 5px -6px rgba(0,0,0,0.75);
-// -webkit-box-shadow: 8px 6px 5px -6px rgba(0,0,0,0.75);
-// -moz-box-shadow: 8px 6px 5px -6px rgba(0,0,0,0.75);
-//`
+
 
 export default ProfilePage;

@@ -1,17 +1,28 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-// import { Title } from 'styles/Styles';
-import { Text } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
+
+
     return (
-    <>
-        <Text>Login</Text>
-        {/* <Link to="/login"> GO TO LOGIN</Link>
-        <Title>Sorry, no such page..</Title>; */}
-    </>
-    ) 
-}
+     <View style={styles.container}>
+        <Text>Not found :(
+        Click <Link to='/'>here </Link> to go to start page</Text>
+    </View>
+    )}
+
+
+    const styles = StyleSheet.create({
+        container: {
+        flex: 1,
+        backgroundColor: 'red',
+        alignItems: 'center',
+        justifyContent: 'center',
+        },
+        });
+
+    
 
 export default NotFound;
 
