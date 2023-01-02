@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import profiles from "../reducers/profiles.js";
-import { API_URL } from "/Users/josefineengdahl/Desktop/final-project/final-project/ReactNativeFrontend/utils/utils.js";
+import { API_URL } from '../utils/utils'
 import { useNavigate, Link } from "react-router-dom";
 import { StyleSheet, Text, View, Button } from "react-native";
 

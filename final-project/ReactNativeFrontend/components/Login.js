@@ -1,8 +1,8 @@
 import React, {useEffect, useState, createRef} from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { API_URL } from "/Users/josefineengdahl/Desktop/final-project/final-project/ReactNativeFrontend/utils/utils.js";
-import user from "/Users/josefineengdahl/Desktop/final-project/final-project/ReactNativeFrontend/reducers/user.js";
+import { API_URL } from '../utils/utils'
+import user from '../reducers/user';
 import { StyleSheet, Text, View, TextInput, Button} from "react-native";
 
 
