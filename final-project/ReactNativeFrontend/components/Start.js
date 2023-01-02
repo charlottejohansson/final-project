@@ -22,17 +22,6 @@ const Start = () => {
     } catch (error) {}
   };
 
-  // const getTitleDetails = async (id) => {
-  //   try {
-  //     const res = await axios.get("api/details/", {
-  //       params: { id },
-  //     });
-  //     const { data } = res;
-  //     setTitleDetails(data);
-  //     setStreamingInfo(data.streamingAvailability.country.US);
-  //   } catch (error) {
-  //   }
-  // };
 
   const onFormSubmit = (event) => {
     getTitle();
@@ -50,7 +39,9 @@ return (
     <TextInput
       placeholder="search for movie"
       type= "text"
-      onChange={(event) => {
+      value={title}
+      onChangeText={setTitle}
+      onSubmitEditing={(event) => {
         setTitle(event.target.value);
         setSearchResults(null); // Remove previous results
         setTitleDetails(null);
@@ -59,9 +50,6 @@ return (
       // style={styles.input}
       // onChangeText={setUsername}
       // value={username}
-      // autoCapitalize="none" //meaning?
-      // returnKeyType="next" // meaning?
-      // blurOnSubmit={false} // meaning?
       // onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
 
 
@@ -71,11 +59,13 @@ return (
        onPress={(onFormSubmit)}
        type="submit"
     />
-
- {searchResults?.map((item) => {
-        <View key={item.title}/>
-    })} 
-
+			{searchResults && (
+        <View>
+          {searchResults?.map((item) => {
+          <View key={item.title}/>
+        })} 
+        </View>
+)}
 
     <Text>Start page
   Click <Link to='/login'>here </Link> to sign up or sign in </Text>

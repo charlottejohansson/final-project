@@ -43,11 +43,11 @@ const ProfilePage = () => {
         <View style={styles.container}>
              <Text>ProfilePage - it's working!</Text>
 
-                <Button 
+                {/* <Button 
                 title="Sign out"
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                 type="submit"
-                />
+                /> */}
          
      </View>
 );
