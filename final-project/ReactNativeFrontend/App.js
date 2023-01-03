@@ -1,4 +1,5 @@
 import React from 'react';
+// import { NativeRouter, Routes, Route } from 'react-router-native';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
@@ -27,11 +28,11 @@ export default function App() {
     <Provider store={store}>
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Start />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/main' element={<ProfilePage />} />
-      <Route path='*' element={<Notfound />} /> 
+      <Route  path='/' element={<Start />} />
+      <Route  path='/login' element={<Login />} />
+      <Route  path='/register' element={<Register />} />
+      <Route  path='/main' element={<ProfilePage />} />
+      <Route  path='*' element={<Notfound />} /> 
     </Routes>
     </BrowserRouter> 
     </Provider>
