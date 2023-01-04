@@ -28,11 +28,7 @@ const Start = ({movies}) => {
 
   return (
     <View style={styles.container}>
-      <Text>Start page Click</Text> 
-      <Link to='/login'><Text>here</Text></Link> 
-      <Text>to sign up or sign in
-        Get Streaming details of Movie and TV Shows from 150+ Streaming
-        platforms </Text>
+    <Link to='/login'><Text>Click here</Text></Link>
 
       <TextInput
         placeholder="search for movie"
