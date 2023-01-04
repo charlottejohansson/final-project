@@ -55,7 +55,7 @@ const Register = () => {
 
     return (
         <View style={styles.container} onPress={(onFormSubmit)}>
-                <Text> Register page! </Text>
+                <Text>Register page!</Text>
                     <TextInput
                         placeholder="Enter username" 
                         style={styles.input}
