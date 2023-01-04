@@ -1,4 +1,5 @@
-// import styled from 'styled-components'
+import React from 'react'
+import styled from 'styled-components/native'
 
 // export const Title = styled.h1 `
 // font-size: 40px;

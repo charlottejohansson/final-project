@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight, TextInput } from "react-native";
+import { Colors, Typography, Buttons, Containers } from '../styles'
 
 
 
@@ -31,12 +32,13 @@ const Start = () => {
 
 return (
   <View style={styles.container} onPress={(onFormSubmit)}>
-    <Text>
+    <Text style={styles.text}>
 				Get Streaming details of Movie and TV Shows from 150+ Streaming
 				platforms
 		</Text>
 
     <TextInput
+      style={styles.textInput}
       placeholder="search for movie"
       type= "text"
       value={title}
@@ -54,11 +56,15 @@ return (
 
 
     />
-    <Button 
-       title="Search"
-       onPress={(onFormSubmit)}
-       type="submit"
-    />
+    <TouchableHighlight
+      style={styles.button}
+      onPress={(onFormSubmit)}
+      type="submit">
+      <View >
+        <Text>Search</Text>
+      </View>
+    </TouchableHighlight>
+       
 			{searchResults && (
         <View>
           {searchResults?.map((item) => {
@@ -67,7 +73,7 @@ return (
         </View>
 )}
 
-    <Text>Start page
+    <Text style={styles.text}>Start page
   Click <Link to='/login'>here </Link> to sign up or sign in </Text>
   </View>
 );
@@ -75,12 +81,25 @@ return (
 
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: 'lightpink',
-alignItems: 'center',
-justifyContent: 'center',
-},
+  container: {
+    ...Containers.outerContainer,
+  },
+
+  button: {
+    ...Buttons.primaryBtn,
+  },
+
+  h2: {
+    ...Typography.h2,
+  },
+
+  text: {
+    ...Typography.body2,
+  },
+
+  textInput: {
+    color: Colors.lavenderBlush,
+  }
 });
 
 export default Start;
