@@ -39,8 +39,6 @@ const ProfilePage = () => {
     }, []);
 
     return (
-        <>
-
       
         <View style={styles.container}>
              <Text>ProfilePage - it's working!</Text>
@@ -52,7 +50,6 @@ const ProfilePage = () => {
                 /> */}
          
      </View>
-     </>
 
 );
 }

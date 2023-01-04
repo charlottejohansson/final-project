@@ -28,16 +28,16 @@ const MovieDetails = () => {
       <Image
         source={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
         alt={movieDetails} />
-      <View />
+    <View />
 
       <View>
         <Image
           source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`}
           alt={movieDetails} />
-        <View>
+      <View>
           <Text>
             {movieDetails.title}
-            <Text>⭐️ {Math.round(movieDetails.vote_average * 10) / 10}</Text>
+            ⭐️ {Math.round(movieDetails.vote_average * 10) / 10}
           </Text>
           <Text>{movieDetails.tagline}</Text>
           <Text>{movieDetails.overview}</Text>

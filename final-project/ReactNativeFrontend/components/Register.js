@@ -91,7 +91,7 @@ const Register = () => {
                 />
 
                 {error !== null && (
-                <p style={{ fontSize: '21px', color: 'red' }}>{error}</p>
+                <Text style={{ fontSize: '21px', color: 'red' }}>{error}</Text>
             )}
         </Text>
       </View>

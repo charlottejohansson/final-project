@@ -6,14 +6,12 @@ const NotFound = () => {
 
 
     return (
-        <>
-
-     <View style={styles.container}>
-        <Text>Not found :(
-        Click <Link to='/'>here </Link> to go to start page</Text>
-    </View>
-    </>
-
+        <View style={styles.container}>
+            <Text>Not found :(
+            Click </Text> 
+            <Link to='/'><Text>here</Text></Link> 
+            <Text>to go to start page</Text>
+        </View>        
     )}
 
 

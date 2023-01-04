@@ -1,74 +1,48 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-native';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
-
 
 const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
 	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
+  const { search_result } = useParams(); // need this?
 
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-const options = {
-	method: 'GET',
-	headers: {
-		// 'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
-    	'X-RapidAPI-Key': 'random numbers',
-		'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
-	}
-};
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
+        'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+      }
+    };
 
-
-fetch('https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=Breaking%20Bad&search_type=1', options)
-// fetch(`https://www.omdbapi.com/?t=${event.target.value}&apikey=e170d343`)
+// Able to search for title & person
+fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
 	.then(response => response.json())
-	.then(response => setSearchResults(response))
+	.then(response => setSearchResults(response.results))
 	.catch(err => console.error(err));
   }
 
 return (
-  <>
-//code from previous project ( to row 50)
-<View>
-  <View>
-    {movies.map((movie) => (
-      <Link
-        key={movie.id}
-        to={`/MovieDetails/${movie.id}`}>
-        <Image
-  style={{width: '50%', height: '100%'}}
-  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}
-/>
-         {console.log(`https://image.tmdb.org/t/p/w342${movie.poster_path}`)}
-        <View>
-          <Text>{movie.title}</Text>
-          <Text>Released {movie.release_date}</Text>
-        </View>
-      </Link>
-    ))}
-  </View>
-
-
   <View style={styles.container}>
-        <Text>Start page
-  Click <Link to='/login'>here </Link> to sign up or sign in </Text>
-    <Text>
+        <Text>Start page Click</Text> 
+        <Link to='/login'><Text>here</Text></Link> 
+        <Text>to sign up or sign in
 				Get Streaming details of Movie and TV Shows from 150+ Streaming
-				platforms
-		</Text>
-
+				platforms </Text>
     <TextInput
       placeholder="search for movie"
       type= "text"
-      onChange={setTitle}
-      onSubmitEditing={(event) => {
-          setTitle(event.target.value);
-          setSearchResults(null); // Remove previous results
-          // setTitleDetails(null);
-      }}
+      onChangeText={(text) => {
+        setTitle(text);
+        setSearchResults(null); // Remove previous results
+        // setTitleDetails(null);
+        console.log(text)
+    }}
     />
 
     <Button
@@ -94,10 +68,24 @@ return (
         }
       </View>
     )}
+<View>
+    {movies.map((movie) => (
+      <Link
+        key={movie.id}
+        to={`/MovieDetails/${movie.id}`}>
+          <View>
+          <Image
+            style={{width: '50%', height: '100%'}}
+            source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
+        <View>
+          <Text>{movie.title}</Text>
+          <Text>Released {movie.release_date}</Text>
+        </View>
+          </View>
+      </Link>
+    ))}
+    </View>
   </View>
-
-  </View>
-  </>
   );
 }
 

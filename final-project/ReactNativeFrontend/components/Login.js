@@ -53,7 +53,8 @@ const Login = () => {
             })
     }
     return (
-        <>        <View style={styles.container} onPress={(onFormSubmit)}>
+        <>        
+        <View style={styles.container} onPress={(onFormSubmit)}>
         <Text> Login page! </Text>
 
             <TextInput
@@ -84,10 +85,8 @@ const Login = () => {
              type="submit"
              />
 
-        <Text>
-            Don't have an account?
-               <Link to='/register'> Sign up here </Link>
-            </Text>
+        <Text> Don't have an account?</Text>
+               <Link to='/register'> <Text>Sign up here</Text> </Link>
 
             <Button 
                 title="Back to start page"
