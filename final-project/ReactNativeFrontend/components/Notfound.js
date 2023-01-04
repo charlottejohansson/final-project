@@ -3,28 +3,23 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { Link } from "react-router-native";
 
 const NotFound = () => {
-
-
     return (
         <View style={styles.container}>
-            <Text>Not found :(
-            Click </Text> 
+            <Text>Not found :( Click </Text> 
             <Link to='/'><Text>here</Text></Link> 
             <Text>to go to start page</Text>
         </View>        
-    )}
+    )
+}
 
-
-    const styles = StyleSheet.create({
-        container: {
-        flex: 1,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center',
-        },
-        });
-
-    
+const styles = StyleSheet.create({
+    container: {
+    flex: 1,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    },
+});
 
 export default NotFound;
 

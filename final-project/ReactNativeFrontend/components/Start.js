@@ -20,89 +20,74 @@ const Start = ({movies}) => {
       }
     };
 
-// Able to search for title & person
-fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
-	.then(response => response.json())
-	.then(response => setSearchResults(response.results))
-	.catch(err => console.error(err));
+  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
+    .then(response => response.json())
+    .then(response => setSearchResults(response.results))
+    .catch(err => console.error(err));
   }
 
-return (
-  <View style={styles.container}>
-        <Text>Start page Click</Text> 
-        <Link to='/login'><Text>here</Text></Link> 
-        <Text>to sign up or sign in
-				Get Streaming details of Movie and TV Shows from 150+ Streaming
-				platforms </Text>
-    <TextInput
-      placeholder="search for movie"
-      type= "text"
-      onChangeText={(text) => {
-        setTitle(text);
-        setSearchResults(null); // Remove previous results
-        // setTitleDetails(null);
-        console.log(text)
-    }}
-    />
+  return (
+    <View style={styles.container}>
+      <Text>Start page Click</Text> 
+      <Link to='/login'><Text>here</Text></Link> 
+      <Text>to sign up or sign in
+        Get Streaming details of Movie and TV Shows from 150+ Streaming
+        platforms </Text>
 
-    <Button
-       title="Search"
-       onPress={(onFormSubmit)}
-       type="submit"
-    />
+      <TextInput
+        placeholder="search for movie"
+        type= "text"
+        onChangeText={(text) => {
+          setTitle(text);
+          setSearchResults(null); // Remove previous results
+        }}
+      />
+
+      <Button
+        title="Search"
+        onPress={(onFormSubmit)}
+        type="submit"
+      />
 
     {searchResults && (
       <View>
         {searchResults.map((item) => {
           return (
-            <View key={item.name}> <Text>{item.name} </Text>
-         
-            {/* <Text> {item.streamingInfo} </Text>   */}
-            {/* <Image source={{uri:`${item.backdropURLs[0]}`}} */}
-            {/* <Image source={{ uri: `${item.backdropURLs}` }} */}
-            {/* <Image source={{ uri: `https://image.tmdb.org/t/p/w342${item.posterURL}` }} */}
-             {/* <Image source={{ uri: "https://image.tmdb.org/t/p/w92/hkC4yNDFmW1yQuQhtZydMeRuaAb.jpg" }}/> */}
-      </View>
+            <View key={item.name}> <Text>{item.name} </Text></View>
           )
-        })
-        }
+        })}
       </View>
     )}
-<View>
-    {movies.map((movie) => (
-      <Link
-        key={movie.id}
-        to={`/MovieDetails/${movie.id}`}>
-          <View>
-          <Image
-            style={{width: '50%', height: '100%'}}
-            source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
-        <View>
-          <Text>{movie.title}</Text>
-          <Text>Released {movie.release_date}</Text>
-        </View>
-          </View>
-      </Link>
-    ))}
+
+      <View>
+        {movies.map((movie) => (
+          <Link
+            key={movie.id}
+            to={`/MovieDetails/${movie.id}`}>
+              <View>
+                <Image
+                  style={{width: '50%', height: '100%'}}
+                  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
+                <View>
+                  <Text>{movie.title}</Text>
+                  <Text>Released {movie.release_date}</Text>
+                </View>
+              </View>
+          </Link>
+        ))}
+      </View>
     </View>
-  </View>
-  );
-}
+    );
+  }
 
-const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: 'lightpink',
-alignItems: 'center',
-justifyContent: 'center',
-},
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'lightpink',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
 
-});
+  export default Start;
 
-export default Start;
-
-
-/// look for movie in internal API
-// if (movie found) { return the found movie to the component},
-// else do all the things that you will do anyway
-// in the end in the else add the movie to your internal API/DATABSE

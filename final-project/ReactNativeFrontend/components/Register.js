@@ -5,7 +5,6 @@ import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
 import { StyleSheet, Text, View, TextInput, Button} from "react-native";
 
-
 const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +16,7 @@ const Register = () => {
 
     useEffect( () => {
         if (accessToken) {
-            navigate("/main");
+        navigate("/main");
         }
     }, [accessToken])
 
@@ -53,63 +52,54 @@ const Register = () => {
                 }
             })
     }
+
     return (
-        <>
-
         <View style={styles.container} onPress={(onFormSubmit)}>
-        <Text> Register page! </Text>
-            <TextInput
-            placeholder="Enter username" 
-            style={styles.input}
-            onChangeText={setUsername}
-            value={username}
-            autoCapitalize="none" //meaning?
-            returnKeyType="next" // meaning?
-            blurOnSubmit={false} // meaning?
-            onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
-             />
-
-        <TextInput 
-                placeholder="Enter Password" 
-                ref={passwordInputRef}
-                value={password} 
-                blurOnSubmit={false}
-                secureTextEntry={true}
-                onChangeText={setPassword}
-                returnKeyType="next" 
-             />
-
-
-        <Text>
-            {password && password.length < 8
-                ? 'password must be over 8 characters'
-                : ''}
-            <Button 
-                title="Sign up"
-                onPress={(onFormSubmit)}
-                type="submit"
+                <Text> Register page! </Text>
+                    <TextInput
+                        placeholder="Enter username" 
+                        style={styles.input}
+                        onChangeText={setUsername}
+                        value={username}
+                        autoCapitalize="none" //meaning?
+                        returnKeyType="next" // meaning?
+                        blurOnSubmit={false} // meaning?
+                        onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+                    />
+                <TextInput 
+                    placeholder="Enter Password" 
+                    ref={passwordInputRef}
+                    value={password} 
+                    blurOnSubmit={false}
+                    secureTextEntry={true}
+                    onChangeText={setPassword}
+                    returnKeyType="next" 
                 />
+                <Text>
+                    {password && password.length < 8
+                        ? 'password must be over 8 characters'
+                        : ''}
+                    <Button 
+                        title="Sign up"
+                        onPress={(onFormSubmit)}
+                        type="submit"
+                        />
+                                {error !== null && (
+                    <Text style={{ fontSize: '21px', color: 'red' }}>{error}</Text>
+                     )}
+                 </Text>
+          </View>
+    )
+}
 
-                {error !== null && (
-                <Text style={{ fontSize: '21px', color: 'red' }}>{error}</Text>
-            )}
-        </Text>
-      </View>
-      </>
-    )}
-
-
-
-    const styles = StyleSheet.create({
-        container: {
-        flex: 1,
-        backgroundColor: 'green',
-        alignItems: 'center',
-        justifyContent: 'center',
-        },
-        });
-
-    
+const styles = StyleSheet.create({
+    container: {
+            flex: 1,
+            backgroundColor: 'green',
+            alignItems: 'center',
+            justifyContent: 'center',
+    },
+});
 
 export default Register;
 

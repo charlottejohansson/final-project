@@ -14,7 +14,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((store) => store.user.accessToken);
-    useEffect( () => {
+    useEffect(() => {
         if (accessToken) {
             navigate("/main");
         }
@@ -31,6 +31,7 @@ const Login = () => {
             },
             body: JSON.stringify({username: username, password: password })
         }
+        
         fetch(API_URL(mode), options)
             .then(response => response.json())
             .then(data => {
@@ -52,23 +53,20 @@ const Login = () => {
                 }
             })
     }
-    return (
-        <>        
+    
+    return (    
         <View style={styles.container} onPress={(onFormSubmit)}>
-        <Text> Login page! </Text>
-
+            <Text> Login page! </Text>
             <TextInput
-            placeholder="Enter username" 
-            style={styles.input}
-            onChangeText={setUsername}
-            value={username}
-            autoCapitalize="none" //meaning?
-            returnKeyType="next" // meaning?
-            blurOnSubmit={false} // meaning?
-            onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
-             />
-
-
+                placeholder="Enter username" 
+                style={styles.input}
+                onChangeText={setUsername}
+                value={username}
+                autoCapitalize="none" //meaning?
+                returnKeyType="next" // meaning?
+                blurOnSubmit={false} // meaning?
+                onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+            />
             <TextInput 
                 placeholder="Enter Password" 
                 ref={passwordInputRef}
@@ -76,41 +74,34 @@ const Login = () => {
                 blurOnSubmit={false}
                 secureTextEntry={true}
                 onChangeText={setPassword}
-                returnKeyType="next" 
-             />
-
+                returnKeyType="next"
+            />
             <Button 
-             title="login"
-             onPress={(onFormSubmit)}
-             type="submit"
-             />
-
-        <Text> Don't have an account?</Text>
-               <Link to='/register'> <Text>Sign up here</Text> </Link>
-
+                title="login"
+                onPress={(onFormSubmit)}
+                type="submit"
+            />
+            <Text>Don't have an account?</Text>
+            <Link to='/register'>
+                <Text>Sign up here</Text>
+            </Link>
             <Button 
                 title="Back to start page"
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}}
                 type="submit"
-                />
-         
-      </View>
-      </>
+            />
+        </View>
+    )
+}
 
-    )}
-
-
-
-    const styles = StyleSheet.create({
-        container: {
+const styles = StyleSheet.create({
+    container: {
         flex: 1,
         backgroundColor: 'red',
         alignItems: 'center',
         justifyContent: 'center',
-        },
-        });
-
-    
+    },
+});
 
 export default Login;
 
