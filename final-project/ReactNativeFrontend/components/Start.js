@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import { StyleSheet, Text, View, TouchableHighlight, TextInput } from "react-native";
-import { Colors, Typography, Buttons, Containers } from '../styles'
+import { Colors, Typography, Containers } from '../styles'
+import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 
 
 
@@ -56,14 +57,11 @@ return (
 
 
     />
-    <TouchableHighlight
+    <PrimaryBtn
       style={styles.button}
       onPress={(onFormSubmit)}
       type="submit">
-      <View >
-        <Text>Search</Text>
-      </View>
-    </TouchableHighlight>
+    </PrimaryBtn>
        
 			{searchResults && (
         <View>
@@ -85,20 +83,13 @@ const styles = StyleSheet.create({
     ...Containers.outerContainer,
   },
 
-  button: {
-    ...Buttons.primaryBtn,
-  },
-
-  h2: {
-    ...Typography.h2,
-  },
-
   text: {
     ...Typography.body2,
+    color: Colors.palette.lavenderBlush,
   },
 
   textInput: {
-    color: Colors.lavenderBlush,
+    color: Colors.palette.lavenderBlush,
   }
 });
 

@@ -1,36 +1,43 @@
-import { palette } from "./colors";
+export const size = {
+    XS: 12,
+    S: 16,
+    M: 26,
+    L: 42,
+}
+
+export const lineheight = {
+    XS: 10,
+    S: 20,
+    M: 30,
+    L: 50,
+}
 
 export const h1 = {
-    fontSize: '42px',
-    lineHeight: '50px',
-    color: palette.lavenderBlush,
+    fontSize: size.L,
+    lineHeight: lineheight.L,
 }
 
 export const h2 = {
-    fontSize: '26px',
-    lineHeight: '30px',
+    fontSize: size.M,
+    lineHeight: lineheight.M,
 }
 
 export const h3 = {
-    fontSize: '16px',
-    lineHeight: '20px',
-    color: palette.lavenderBlush,
+    fontSize: size.S,
+    lineHeight: lineheight.S,
 }
 
 export const body1 = {
-    fontSize: '26px',
-    lineHeight: '30px',
-    color: palette.lavenderBlush,
+    fontSize: size.M,
+    lineHeight: lineheight.M,
 }
 
 export const body2 = {
-    fontSize: '16px',
-    lineHeight: '20px',
-    color: palette.lavenderBlush,
+    fontSize: size.S,
+    lineHeight: lineheight.S,
 }
 
 export const caption = {
-    fontSize: '10px',
-    lineHeight: '10px',
-    color: palette.lavenderBlush,
+    fontSize: size.XS,
+    lineHeight: lineheight.XS,
 }
