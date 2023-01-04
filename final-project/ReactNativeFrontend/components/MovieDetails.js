@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-native';
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import { MOVIEDETAILS_URL } from '../utils/utils';
 
@@ -22,6 +22,8 @@ const MovieDetails = () => {
   };
 
   return (
+    <>
+
     <View>
       <Image
         source={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
@@ -42,11 +44,13 @@ const MovieDetails = () => {
         </View>
       </View>
       <View>
-        <Button type="button" onPress={goBack}>
+        <Button title="Go back" onPress={goBack}>
         <Text>loading</Text>
         </Button>
       </View>
     </View>
+    </>
+
   );
 };
 

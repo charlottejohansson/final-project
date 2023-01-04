@@ -1,7 +1,7 @@
 // import React from 'react';
-// import { NativeRouter, Routes, Route } from 'react-router-native';
+import { NativeRouter, Routes, Route } from 'react-router-native';
 import React, {useState, useEffect} from "react";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
@@ -57,20 +57,23 @@ export default function App() {
     );
   }
   return (
+    <>
     <Provider store={store}>
-    <BrowserRouter>
+    <NativeRouter>
+   
     <Routes>
       {/* <Route  path='/' element={<Start />} /> */}
       <Route  path='/login' element={<Login />} />
       <Route  path='/register' element={<Register />} />
       <Route  path='/main' element={<ProfilePage />} />
       <Route  path='*' element={<Notfound />} /> 
-
       <Route path="/" element={<Start movies={movieList} />} />
       <Route path="/MovieDetails/:movie_id" element={<MovieDetails />} />
     </Routes>
-    </BrowserRouter> 
+
+    </NativeRouter> 
     </Provider>
+    </>
   );
 }
 

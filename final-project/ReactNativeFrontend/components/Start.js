@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-native';
+import { Link } from 'react-router-native';
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 
 
@@ -15,20 +15,22 @@ const Start = ({movies}) => {
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
+		// 'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
+    	'X-RapidAPI-Key': 'random numbers',
 		'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
 	}
 };
 
 
-// fetch('https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=Breaking%20Bad&search_type=1', options)
-fetch(`https://www.omdbapi.com/?t=${event.target.value}&apikey=e170d343`)
+fetch('https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=Breaking%20Bad&search_type=1', options)
+// fetch(`https://www.omdbapi.com/?t=${event.target.value}&apikey=e170d343`)
 	.then(response => response.json())
 	.then(response => setSearchResults(response))
 	.catch(err => console.error(err));
   }
 
 return (
+  <>
 //code from previous project ( to row 50)
 <View>
   <View>
@@ -37,8 +39,9 @@ return (
         key={movie.id}
         to={`/MovieDetails/${movie.id}`}>
         <Image
-          source={{require:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}
-         />
+  style={{width: '50%', height: '100%'}}
+  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}
+/>
          {console.log(`https://image.tmdb.org/t/p/w342${movie.poster_path}`)}
         <View>
           <Text>{movie.title}</Text>
@@ -94,6 +97,7 @@ return (
   </View>
 
   </View>
+  </>
   );
 }
 
@@ -104,6 +108,7 @@ backgroundColor: 'lightpink',
 alignItems: 'center',
 justifyContent: 'center',
 },
+
 });
 
 export default Start;

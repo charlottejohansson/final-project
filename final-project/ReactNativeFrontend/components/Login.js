@@ -1,6 +1,6 @@
 import React, {useEffect, useState, createRef} from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
 import { StyleSheet, Text, View, TextInput, Button} from "react-native";
@@ -53,7 +53,7 @@ const Login = () => {
             })
     }
     return (
-        <View style={styles.container} onPress={(onFormSubmit)}>
+        <>        <View style={styles.container} onPress={(onFormSubmit)}>
         <Text> Login page! </Text>
 
             <TextInput
@@ -96,6 +96,8 @@ const Login = () => {
                 />
          
       </View>
+      </>
+
     )}
 
 

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-native";
 import { StyleSheet, Text, View, Button } from "react-native";
 
 const ProfilePage = () => {
@@ -39,6 +39,8 @@ const ProfilePage = () => {
     }, []);
 
     return (
+        <>
+
       
         <View style={styles.container}>
              <Text>ProfilePage - it's working!</Text>
@@ -50,6 +52,8 @@ const ProfilePage = () => {
                 /> */}
          
      </View>
+     </>
+
 );
 }
 
