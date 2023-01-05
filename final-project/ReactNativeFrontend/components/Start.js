@@ -33,6 +33,7 @@ const Start = ({movies}) => {
     <Link to='/login'><Text>Click here</Text></Link>
 
       <TextInput
+        style={styles.text}
         placeholder="search for movie"
         type= "text"
         onChangeText={(text) => {
@@ -51,7 +52,7 @@ const Start = ({movies}) => {
       <View>
         {searchResults.map((item) => {
           return (
-            <View key={item.name}> <Text>{item.name} </Text></View>
+            <View key={item.name}> <Text style={styles.text}>{item.name} </Text></View>
           )
         })}
       </View>
@@ -67,7 +68,7 @@ const Start = ({movies}) => {
                   style={{width: '50%', height: '100%'}}
                   source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
                 <View>
-                  <Text>{movie.title}</Text>
+                  <Text style={styles.text}>{movie.title}</Text>
                   <Text>Released {movie.release_date}</Text>
                 </View>
               </View>
