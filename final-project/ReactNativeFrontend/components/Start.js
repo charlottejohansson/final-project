@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
-import { Colors, Typography, Containers } from '../styles'
-import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
+import { StyleSheet, Text, View, TextInput } from "react-native";
+import { Typography, Containers, Spacing } from '../styles'
+import { PrimaryIconBtn } from "../styles/buttons";
+import { palette } from "../styles/colors";
+import { size, lineheight } from "../styles/typography";
+import { spacing } from "../styles/spacing";
 
 const Start = ({movies}) => {
 
@@ -30,35 +33,41 @@ const Start = ({movies}) => {
 
   return (
     <View style={styles.container}>
-    <Link to='/login'><Text>Click here</Text></Link>
-
-      <TextInput
-        style={styles.text}
-        placeholder="search for movie"
-        type= "text"
-        onChangeText={(text) => {
-          setTitle(text);
-          setSearchResults(null); // Remove previous results
-        }}
-      />
-
-      <Button
-        title="Search"
-        onPress={(onFormSubmit)}
-        type="submit"
-      />
-
+      <View style={styles.header}>
+        <Text style={styles.textHeader}>Stream.guide</Text>
+        <Link to='/login'><Text style={styles.text}>Login</Text></Link>
+      </View>
+    
+      
+      <View style={styles.searchBar}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search movies"
+          placeholderTextColor="rgba(252,238,247,0.5)" 
+          returnKeyType="search"
+          keyboardType="default"
+          type="text"
+          onChangeText={(text) => {
+            setTitle(text);
+            setSearchResults(null); // Remove previous results
+        }}/>
+        <PrimaryIconBtn
+          source={require('../assets/search.svg')}
+          onPress={(onFormSubmit)}
+          type="submit"/>
+      </View>
+      
     {searchResults && (
       <View>
         {searchResults.map((item) => {
           return (
-            <View key={item.name}> <Text style={styles.text}>{item.name} </Text></View>
+            <View key={item.name}> <Text style={styles.text}>{item.name}</Text></View>
           )
         })}
       </View>
     )}
 
-      <View>
+      {/* <View>
         {movies.map((movie) => (
           <Link
             key={movie.id}
@@ -74,7 +83,7 @@ const Start = ({movies}) => {
               </View>
           </Link>
         ))}
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -83,14 +92,38 @@ const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
     },
-  
-    text: {
-      ...Typography.body2,
-      color: Colors.palette.lavenderBlush,
+
+    searchBar: {
+      backgroundColor: palette.lavenderBlush04,
+      borderColor: palette.darkPurple,
+      borderWidth: 1,
+      borderRadius: 35,
+      flexDirection: "row",
+      width: "90%",
+      paddingLeft: size.M,
     },
-  
-    textInput: {
-      color: Colors.palette.lavenderBlush,
+
+    input: {
+      fontSize: size.S,
+      lineHeight: lineheight.S,
+      paddingTop: spacing.S,
+      paddingBottom: spacing.S,
+      color: palette.lavenderBlush,
+      width: "90%",
+    },
+
+    text: {
+      color: palette.lavenderBlush
+    },
+
+    header: {
+      flexDirection: "row"
+    },
+
+    textHeader: {
+      fontSize: size.M,
+      lineHeight: lineheight.M,
+      color: palette.lavenderBlush
     }
 });
   
