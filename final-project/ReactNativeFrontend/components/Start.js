@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
 
     header: {
-      flexDirection: "row"
+      flexDirection: "row",
     },
 
     textHeader: {
