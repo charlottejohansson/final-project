@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-native";
 import { StyleSheet, Text, View, Button } from "react-native";
 
 const ProfilePage = () => {
@@ -16,8 +16,8 @@ const ProfilePage = () => {
             navigate("/login");
         }
     }, []);
+    
     useEffect(() => {
-
         const options = {
             method: "GET",
             headers: {
@@ -25,6 +25,7 @@ const ProfilePage = () => {
                 "Authorization": accessToken
             }
         }
+
         fetch(API_URL("profiles"), options)
             .then(res => res.json())
             .then(data => {
@@ -39,27 +40,24 @@ const ProfilePage = () => {
     }, []);
 
     return (
-      
         <View style={styles.container}>
-             <Text>ProfilePage - it's working!</Text>
-
-                {/* <Button 
+            <Text>ProfilePage - it's working!</Text>
+            {/* <Button 
                 title="Sign out"
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                 type="submit"
-                /> */}
-         
-     </View>
-);
+            /> */}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: 'yellow',
-alignItems: 'center',
-justifyContent: 'center',
-},
+    container: {
+        flex: 1,
+        backgroundColor: 'yellow',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 

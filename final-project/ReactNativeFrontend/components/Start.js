@@ -1,96 +1,98 @@
-import React, {useState} from "react";
-import { Link } from 'react-router-dom';
-import { StyleSheet, Text, View, TouchableHighlight, TextInput } from "react-native";
+import React, {useState, useEffect} from "react";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
+import { Link } from 'react-router-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
 import { Colors, Typography, Containers } from '../styles'
 import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 
-
-
-const Start = () => {
+const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
 	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
-	const [titleDetails, setTitleDetails] = useState(null); // Response 2: ID of Title selected by the user from the results
-	const [streamingInfo, setStreamingInfo] = useState(null); // Response 2: Streaming availability of the selected title
-
-
-  const getTitle = async () => {
-    try {
-      const res = await axios.get('api/search/', {
-        params: {title}
-      });
-      const {data} = res;
-      setSearchResults(data.results); // Storing the response
-    } catch (error) {}
-  };
+  const { search_result } = useParams(); // need this?
 
 
   const onFormSubmit = (event) => {
-    getTitle();
     event.preventDefault();
-    // event.stopPropagation(); // meaning?
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
+        'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+      }
+    };
+
+  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
+    .then(response => response.json())
+    .then(response => setSearchResults(response.results))
+    .catch(err => console.error(err));
   }
 
-return (
-  <View style={styles.container} onPress={(onFormSubmit)}>
-    <Text style={styles.text}>
-				Get Streaming details of Movie and TV Shows from 150+ Streaming
-				platforms
-		</Text>
+  return (
+    <View style={styles.container}>
+    <Link to='/login'><Text>Click here</Text></Link>
 
-    <TextInput
-      style={styles.textInput}
-      placeholder="search for movie"
-      type= "text"
-      value={title}
-      onChangeText={setTitle}
-      onSubmitEditing={(event) => {
-        setTitle(event.target.value);
-        setSearchResults(null); // Remove previous results
-        setTitleDetails(null);
-      }}
+      <TextInput
+        placeholder="search for movie"
+        type= "text"
+        onChangeText={(text) => {
+          setTitle(text);
+          setSearchResults(null); // Remove previous results
+        }}
+      />
 
-      // style={styles.input}
-      // onChangeText={setUsername}
-      // value={username}
-      // onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+      <Button
+        title="Search"
+        onPress={(onFormSubmit)}
+        type="submit"
+      />
 
+    {searchResults && (
+      <View>
+        {searchResults.map((item) => {
+          return (
+            <View key={item.name}> <Text>{item.name} </Text></View>
+          )
+        })}
+      </View>
+    )}
 
-    />
-    <PrimaryBtn
-      style={styles.button}
-      onPress={(onFormSubmit)}
-      type="submit">
-    </PrimaryBtn>
-       
-			{searchResults && (
-        <View>
-          {searchResults?.map((item) => {
-          <View key={item.title}/>
-        })} 
-        </View>
-)}
-
-    <Text style={styles.text}>Start page
-  Click <Link to='/login'>here </Link> to sign up or sign in </Text>
-  </View>
-);
+      <View>
+        {movies.map((movie) => (
+          <Link
+            key={movie.id}
+            to={`/MovieDetails/${movie.id}`}>
+              <View>
+                <Image
+                  style={{width: '50%', height: '100%'}}
+                  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
+                <View>
+                  <Text>{movie.title}</Text>
+                  <Text>Released {movie.release_date}</Text>
+                </View>
+              </View>
+          </Link>
+        ))}
+      </View>
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-  container: {
-    ...Containers.outerContainer,
-  },
-
-  text: {
-    ...Typography.body2,
-    color: Colors.palette.lavenderBlush,
-  },
-
-  textInput: {
-    color: Colors.palette.lavenderBlush,
-  }
+    container: {
+      ...Containers.outerContainer,
+    },
+  
+    text: {
+      ...Typography.body2,
+      color: Colors.palette.lavenderBlush,
+    },
+  
+    textInput: {
+      color: Colors.palette.lavenderBlush,
+    }
 });
-
+  
 export default Start;
+
+
