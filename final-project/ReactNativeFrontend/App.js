@@ -52,22 +52,17 @@ export default function App() {
   }
 
   return (
-    <>
-      <Provider store={store}>
+    <Provider store={store}>
       <NativeRouter>
-        <View>
-          <Routes>
-            {/* <Route  path='/' element={<Start />} /> */}
-            <Route  path='/login' element={<Login />} />
-            <Route  path='/register' element={<Register />} />
-            <Route  path='/main' element={<ProfilePage />} /> 
-            <Route  path='*' element={<Notfound />} /> 
-            <Route path="/" element={<Start movies={movieList} />} />
-            <Route path="/MovieDetails/:movie_id" element={<MovieDetails />} />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/main' element={<ProfilePage />} /> 
+          <Route path='*' element={<Notfound />} /> 
+          <Route path="/" element={<Start movies={movieList} />} />
+          <Route path="/MovieDetails/:movie_id" element={<MovieDetails />} />
         </Routes>
-      </View>
-    </NativeRouter> 
+      </NativeRouter> 
     </Provider>
-    </>
   );
 }
