@@ -7,13 +7,12 @@ import { PrimaryIconBtn } from "../styles/buttons";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
-
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
-  // const [source, setSource] = useState(null); // Input title of the show/movie
+  const [source, setSource] = useState(null); // Input title of the show/movie
 	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
   const { search_result } = useParams(); // need this?
 
@@ -27,8 +26,6 @@ const Start = ({movies}) => {
         'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
       }
     };
-
-    //test
 
   fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
     .then(response => response.json())
@@ -104,7 +101,7 @@ const Start = ({movies}) => {
               </View>
           </Link>
         ))}
-      </View>
+        </View>*/}
     </View>
   );
 }
@@ -161,5 +158,3 @@ const styles = StyleSheet.create({
 });
   
 export default Start;
-
-
