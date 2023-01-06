@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
-import { Colors, Typography, Containers } from '../styles'
-import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
-
+import { StyleSheet, Text, View, TextInput, Pressable, Image } from "react-native";
+import { Typography, Containers, Spacing } from '../styles'
+import { PrimaryIconBtn } from "../styles/buttons";
+import { palette } from "../styles/colors";
+import { size, lineheight } from "../styles/typography";
+import { spacing } from "../styles/spacing";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const Start = ({movies}) => {
 
@@ -38,50 +41,56 @@ const Start = ({movies}) => {
 
   return (
     <View style={styles.container}>
-    <Link to='/login'><Text style={styles.text}>Sign in</Text></Link>
-
-      <TextInput
-        style={styles.text}
-        placeholder="search for movie"
-        type= "text"
-        onChangeText={(text) => {
-          setTitle(text);
-          setId(text);
-          setSearchResults(null); // Remove previous results
-        }}
-      />
-
-      <Button
-        title="Search"
-        onPress={(onFormSubmit)}
-        type="submit"
-      />
-
-    {searchResults && (
-      <View>
-        {searchResults.map((item) => {
-          return (
-            <View>    
-            <Link
-            key={item.id}
-            to={`/MovieDetailsSearch/${item.id}`}>
-              <View>
-                {/* <Image
-                  style={{width: '50%', height: '100%'}}
-                  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/> */}
-                 <View>
-                  <Text style={styles.text}>{item.name}</Text>
-                </View>
-              </View>
-          </Link>
-        </View>
-        // <View>    
-        // <Text key={item.id} style={styles.text}>{item.name} </Text>
-        // </View>
-          )
-        })}
+      {/* Header with login */}
+      <View style={styles.header}>
+        <Link to="/">
+          <Text style={styles.textHeader}>Stream.guide</Text>
+        </Link>
+        <Link to='/login'>
+          <FontAwesome5 
+            style={styles.icon} 
+            name="user-circle" 
+            size={24} 
+            color={palette.lavenderBlush} />
+        </Link>
       </View>
-    )}
+    
+      {/* Searchbar */}
+      <View style={styles.searchBar}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search movies"
+          placeholderTextColor="rgba(252,238,247,0.5)" 
+          returnKeyType="search"
+          keyboardType="default"
+          type="text"
+          onChangeText={(text) => {
+            setTitle(text);
+            setSearchResults(null); // Remove previous results
+        }}/>
+        <PrimaryIconBtn
+          name={"search"}
+          size={24}
+          onPress={(onFormSubmit)}
+          type="submit"/>
+      </View>
+      
+      {/* Search results */}
+      {searchResults && (
+        <View>
+          {searchResults.map((item) => {
+            return (
+              <View>    
+            <Link
+              key={item.id}
+              to={`/MovieDetailsSearch/${item.id}`}>
+              <Text key={item.name} style={styles.text}>{item.name}</Text>
+              </Link>
+              </View>
+            )
+          })}
+        </View>
+      )}
 
       <View>
         {movies.map((movie) => (
@@ -99,7 +108,7 @@ const Start = ({movies}) => {
               </View>
           </Link>
         ))}
-      </View> 
+        </View>
     </View>
   );
 }
@@ -108,17 +117,51 @@ const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
     },
-  
-    text: {
-      ...Typography.body2,
-      color: Colors.palette.lavenderBlush,
+
+    searchBar: {
+      backgroundColor: palette.lavenderBlush04,
+      borderColor: palette.darkPurple,
+      borderWidth: 1,
+      borderRadius: 35,
+      flexDirection: "row",
+      paddingLeft: size.M,
+      width: "100%",
     },
-  
-    textInput: {
-      color: Colors.palette.lavenderBlush,
+
+    input: {
+      fontSize: size.S,
+      lineHeight: lineheight.S,
+      paddingTop: spacing.S,
+      paddingBottom: spacing.S,
+      color: palette.lavenderBlush,
+      flex: 1,
+    },
+
+    text: {
+      color: palette.lavenderBlush
+    },
+
+    header: {
+      borderWidth: 0,
+      borderColor: "#fff",
+      flexDirection: "row",
+      justifyContent: "center",
+      paddingTop: spacing.XXL,
+      paddingBottom: spacing.M,
+      width: "100%"
+    },
+
+    textHeader: {
+      fontSize: size.M,
+      lineHeight: lineheight.M,
+      color: palette.lavenderBlush
+    },
+
+    icon: {
+      position: "absolute",
+      right: -93,
+      paddingVertical: 3,
     }
 });
   
 export default Start;
-
-

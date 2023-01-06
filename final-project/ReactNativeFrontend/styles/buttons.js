@@ -1,52 +1,67 @@
 
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-import { lineheight, size } from "./typography";
+import { StyleSheet, Text, Image, TouchableHighlight } from "react-native";
 import { palette } from "./colors";
-import { spacing } from "./spacing"
+import { spacing } from "./spacing";
+import { size, lineheight } from './typography'
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
-export const PrimaryBtn = ( desc ) => (
-    <TouchableHighlight style={primary.button}>
-           <Text style={primary.text}>{desc}</Text>
+export const PrimaryBtn = ({ title, onPress }) => (
+  <TouchableHighlight style={primary.button} onPress={onPress}>
+    <Text style={primary.text}>{title}</Text>
   </TouchableHighlight>
 )
 
 const primary = StyleSheet.create({
-    button: {
-      backgroundColor: palette.frostbite,
-      paddingTop: spacing.S,
-      paddingBottom: spacing.S,
-      paddingLeft: spacing.L,
-      paddingRight: spacing.L,
-      borderRadius: spacing.L,
-    },
+  button: {
+    backgroundColor: palette.frostbite,
+    paddingTop: spacing.S,
+    paddingBottom: spacing.S,
+    paddingLeft: spacing.L,
+    paddingRight: spacing.L,
+    borderRadius: 30,
+  },
   
-    text: {
-      fontSize: size.M,
-      lineHeight: lineheight.M,
-      color: palette.lavenderBlush,
-    },
+  text: {
+    fontSize: size.M,
+    lineHeight: lineheight.M,
+    color: palette.lavenderBlush,
+  },
 })
 
-export const SecondaryBtn = () => (
-     <TouchableHighlight style={secondary.button}>
-            <Text style={secondary.text}>lorem</Text>
+export const SecondaryBtn = ({ title, onPress }) => (
+     <TouchableHighlight style={secondary.button} onPress={onPress}>
+            <Text style={secondary.text}>{title}</Text>
    </TouchableHighlight>
  )
 
 const secondary = StyleSheet.create({
-    button: {
-        border: '1px',
-        borderColor: palette.frostbite,
-        paddingTop: spacing.S,
-        paddingBottom: spacing.S,
-        paddingLeft: spacing.L,
-        paddingRight: spacing.L,
-        borderRadius: spacing.L,
-   },
+  button: {
+    borderWidth: '2px',
+    borderColor: palette.frostbite,
+    paddingTop: spacing.S,
+    paddingBottom: spacing.S,
+    paddingLeft: spacing.L,
+    paddingRight: spacing.L,
+    borderRadius: 30,
+  },
 
-   text: {
-     fontSize: size.M,
-     lineHeight: lineheight.M,
-     color: palette.frostbite,
-   },
+  text: {
+    fontSize: size.M,
+    lineHeight: lineheight.M,
+    color: palette.frostbite,
+  },
+})
+
+export const PrimaryIconBtn = ({ name, size, onPress }) => (
+  <TouchableHighlight style={primaryIcon.button} onPress={onPress}>
+    <FontAwesome5 name={name} size={size} color='#FCEEF7' />
+  </TouchableHighlight>
+)
+
+const primaryIcon = StyleSheet.create({
+  button: {
+    backgroundColor: palette.frostbite,
+    padding: spacing.S,
+    borderRadius: 30,
+  },
 })
