@@ -3,6 +3,7 @@ import { StyleSheet, Text, Image, TouchableHighlight } from "react-native";
 import { palette } from "./colors";
 import { spacing } from "./spacing";
 import { size, lineheight } from './typography'
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 export const PrimaryBtn = ({ title, onPress }) => (
   <TouchableHighlight style={primary.button} onPress={onPress}>
@@ -17,7 +18,7 @@ const primary = StyleSheet.create({
     paddingBottom: spacing.S,
     paddingLeft: spacing.L,
     paddingRight: spacing.L,
-    borderRadius: spacing.L,
+    borderRadius: 30,
   },
   
   text: {
@@ -41,7 +42,7 @@ const secondary = StyleSheet.create({
     paddingBottom: spacing.S,
     paddingLeft: spacing.L,
     paddingRight: spacing.L,
-    borderRadius: spacing.L,
+    borderRadius: 30,
   },
 
   text: {
@@ -51,24 +52,16 @@ const secondary = StyleSheet.create({
   },
 })
 
-export const PrimaryIconBtn = ({ source, onPress }) => (
+export const PrimaryIconBtn = ({ name, size, onPress }) => (
   <TouchableHighlight style={primaryIcon.button} onPress={onPress}>
-    <Image style={primaryIcon.icon} source={source}/>
+    <FontAwesome5 name={name} size={size} color='#FCEEF7' />
   </TouchableHighlight>
 )
 
 const primaryIcon = StyleSheet.create({
   button: {
     backgroundColor: palette.frostbite,
-    paddingTop: spacing.XS,
-    paddingBottom: spacing.XS,
-    paddingLeft: spacing.XS,
-    paddingRight: spacing.XS,
-    borderRadius: spacing.L,
-  },
-  
-  icon: {
-    width: 30,
-    height: 30,
+    padding: spacing.S,
+    borderRadius: 30,
   },
 })

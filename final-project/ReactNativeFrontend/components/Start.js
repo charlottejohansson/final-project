@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable, Image } from "react-native";
 import { Typography, Containers, Spacing } from '../styles'
 import { PrimaryIconBtn } from "../styles/buttons";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const Start = ({movies}) => {
 
@@ -33,12 +34,21 @@ const Start = ({movies}) => {
 
   return (
     <View style={styles.container}>
+      {/* Header with login */}
       <View style={styles.header}>
-        <Text style={styles.textHeader}>Stream.guide</Text>
-        <Link to='/login'><Text style={styles.text}>Login</Text></Link>
+        <Link to="/">
+          <Text style={styles.textHeader}>Stream.guide</Text>
+        </Link>
+        <Link to='/login'>
+          <FontAwesome5 
+            style={styles.icon} 
+            name="user-circle" 
+            size={24} 
+            color={palette.lavenderBlush} />
+        </Link>
       </View>
     
-      
+      {/* Searchbar */}
       <View style={styles.searchBar}>
         <TextInput
           style={styles.input}
@@ -52,20 +62,22 @@ const Start = ({movies}) => {
             setSearchResults(null); // Remove previous results
         }}/>
         <PrimaryIconBtn
-          source={require('../assets/search.svg')}
+          name={"search"}
+          size={24}
           onPress={(onFormSubmit)}
           type="submit"/>
       </View>
       
-    {searchResults && (
-      <View>
-        {searchResults.map((item) => {
-          return (
-            <View key={item.name}> <Text style={styles.text}>{item.name}</Text></View>
-          )
-        })}
-      </View>
-    )}
+      {/* Search results */}
+      {searchResults && (
+        <View>
+          {searchResults.map((item) => {
+            return (
+              <Text key={item.name} style={styles.text}>{item.name}</Text>
+            )
+          })}
+        </View>
+      )}
 
       {/* <View>
         {movies.map((movie) => (
@@ -99,8 +111,8 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderRadius: 35,
       flexDirection: "row",
-      width: "90%",
       paddingLeft: size.M,
+      width: "100%",
     },
 
     input: {
@@ -109,7 +121,7 @@ const styles = StyleSheet.create({
       paddingTop: spacing.S,
       paddingBottom: spacing.S,
       color: palette.lavenderBlush,
-      width: "90%",
+      flex: 1,
     },
 
     text: {
@@ -117,13 +129,25 @@ const styles = StyleSheet.create({
     },
 
     header: {
+      borderWidth: 0,
+      borderColor: "#fff",
       flexDirection: "row",
+      justifyContent: "center",
+      paddingTop: spacing.XXL,
+      paddingBottom: spacing.M,
+      width: "100%"
     },
 
     textHeader: {
       fontSize: size.M,
       lineHeight: lineheight.M,
       color: palette.lavenderBlush
+    },
+
+    icon: {
+      position: "absolute",
+      right: -93,
+      paddingVertical: 3,
     }
 });
   

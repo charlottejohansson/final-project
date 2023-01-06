@@ -22,7 +22,7 @@ const primary = StyleSheet.create({
         paddingBottom: size.M,
         paddingLeft: size.M,
         paddingRight: size.M,
-        borderRadius: size.XL,
+        borderRadius: 30,
         fontSize: size.M,
         lineHeight: lineheight.M,
     }

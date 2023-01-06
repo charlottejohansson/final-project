@@ -1,8 +1,10 @@
 import { palette } from "./colors";
+import { spacing } from "./spacing";
 
 export const outerContainer = {
     flex: 1,
     backgroundColor: palette.xiketic,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingLeft: spacing.M,
+    paddingRight: spacing.M,
 }
