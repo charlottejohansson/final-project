@@ -3,7 +3,9 @@ import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
-import { StyleSheet, Text, View, TextInput, Button} from "react-native";
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
+import { Colors, Typography, Containers } from '../styles'
+import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -55,7 +57,7 @@ const Register = () => {
 
     return (
         <View style={styles.container} onPress={(onFormSubmit)}>
-                <Text>Register page!</Text>
+                <Text style={styles.text}>Register page!</Text>
                     <TextInput
                         placeholder="Enter username" 
                         style={styles.input}
@@ -75,7 +77,7 @@ const Register = () => {
                     onChangeText={setPassword}
                     returnKeyType="next" 
                 />
-                <Text>
+                <Text style={styles.text}>
                     {password && password.length < 8
                         ? 'password must be over 8 characters'
                         : ''}
@@ -94,11 +96,17 @@ const Register = () => {
 
 const styles = StyleSheet.create({
     container: {
-            flex: 1,
-            backgroundColor: 'green',
-            alignItems: 'center',
-            justifyContent: 'center',
+      ...Containers.outerContainer,
     },
+  
+    text: {
+      ...Typography.body2,
+      color: Colors.palette.lavenderBlush,
+    },
+  
+    textInput: {
+      color: Colors.palette.lavenderBlush,
+    }
 });
 
 export default Register;

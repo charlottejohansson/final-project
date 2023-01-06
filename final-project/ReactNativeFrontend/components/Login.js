@@ -3,7 +3,9 @@ import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
-import { StyleSheet, Text, View, TextInput, Button} from "react-native";
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
+import { Colors, Typography, Containers } from '../styles'
+import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 
 
 const Login = () => {
@@ -56,7 +58,7 @@ const Login = () => {
     
     return (    
         <View style={styles.container} onPress={(onFormSubmit)}>
-            <Text> Login page! </Text>
+            <Text style={styles.text}> Login page! </Text>
             <TextInput
                 placeholder="Enter username" 
                 style={styles.input}
@@ -81,7 +83,7 @@ const Login = () => {
                 onPress={(onFormSubmit)}
                 type="submit"
             />
-            <Text>Don't have an account?</Text>
+            <Text style={styles.text}>Don't have an account?</Text>
             <Link to='/register'>
                 <Text>Sign up here</Text>
             </Link>
@@ -93,15 +95,21 @@ const Login = () => {
         </View>
     )
 }
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center',
+      ...Containers.outerContainer,
     },
+  
+    text: {
+      ...Typography.body2,
+      color: Colors.palette.lavenderBlush,
+    },
+  
+    textInput: {
+      color: Colors.palette.lavenderBlush,
+    }
 });
+
 
 export default Login;
 

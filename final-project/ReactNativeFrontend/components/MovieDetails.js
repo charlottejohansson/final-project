@@ -27,9 +27,10 @@ const MovieDetails = () => {
         source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
     <View/>
       <View>
-        {/* <Image
-          source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`} Vad gör den här? Behövs den?
-          alt={movieDetails} /> */}
+        <Image
+          style={{width: '50%', height: '100%'}}
+          source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`}
+          alt={movieDetails} />
         <View>
           <Text>
             {movieDetails.title}

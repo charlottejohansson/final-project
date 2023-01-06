@@ -7,11 +7,13 @@ import { PrimaryIconBtn } from "../styles/buttons";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
+
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
+  // const [source, setSource] = useState(null); // Input title of the show/movie
 	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
   const { search_result } = useParams(); // need this?
 
@@ -26,7 +28,14 @@ const Start = ({movies}) => {
       }
     };
 
+    //test
+
   fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
+    .then(response => response.json())
+    .then(response => setSearchResults(response.results))
+    .catch(err => console.error(err));
+
+    fetch(`https://watchmode.p.rapidapi.com/v1/title/${id}/sources`, options)
     .then(response => response.json())
     .then(response => setSearchResults(response.results))
     .catch(err => console.error(err));
@@ -88,14 +97,14 @@ const Start = ({movies}) => {
                 <Image
                   style={{width: '50%', height: '100%'}}
                   source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
-                <View>
+                 <View>
                   <Text style={styles.text}>{movie.title}</Text>
                   <Text>Released {movie.release_date}</Text>
                 </View>
               </View>
           </Link>
         ))}
-      </View> */}
+      </View>
     </View>
   );
 }
