@@ -2,10 +2,12 @@
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import React, {useState, useEffect} from "react";
 
+
 // import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
+// import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
+// import { Colors, Typography, Containers } from '../ReactNativeFrontend/styles'
 import Start from './components/Start'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -13,6 +15,7 @@ import ProfilePage from './components/ProfilePage'
 import Notfound from './components/Notfound'
 import user from "./reducers/user";
 import profiles from "./reducers/profiles";
+// import Icon from '../ReactNativeFrontend/icons/';
 
 //code from previous project ( to row 21)
 import MovieDetails from './components/MovieDetails'
@@ -43,13 +46,10 @@ export default function App() {
       })
   }, []);
 
-  if (loading) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //   );
+  // }
 
   return (
     <Provider store={store}>

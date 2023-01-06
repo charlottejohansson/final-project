@@ -4,6 +4,9 @@ import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
 import { useNavigate, Link } from "react-router-native";
 import { StyleSheet, Text, View, Button } from "react-native";
+import { Colors, Typography, Containers } from '../styles'
+import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
+import user from '../reducers/user';
 
 const ProfilePage = () => {
     const profilesItems = useSelector((store) => store.profiles.items);
@@ -41,25 +44,30 @@ const ProfilePage = () => {
 
     return (
         <View style={styles.container}>
-            <Text>ProfilePage - it's working!</Text>
-            {/* <Button 
+            <Text style={styles.text}>ProfilePage - it's working!</Text>
+            <Button 
                 title="Sign out"
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                 type="submit"
-            /> */}
+            />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: 'yellow',
-        alignItems: 'center',
-        justifyContent: 'center',
+      ...Containers.outerContainer,
     },
+  
+    text: {
+      ...Typography.body2,
+      color: Colors.palette.lavenderBlush,
+    },
+  
+    textInput: {
+      color: Colors.palette.lavenderBlush,
+    }
 });
-
 
 
 export default ProfilePage;
