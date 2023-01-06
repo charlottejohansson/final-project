@@ -24,6 +24,8 @@ const Start = ({movies}) => {
       }
     };
 
+    //test
+
   fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
     .then(response => response.json())
     .then(response => setSearchResults(response.results))
