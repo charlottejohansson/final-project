@@ -29,7 +29,7 @@ const MovieDetails = () => {
       <View>
         <Image
           style={{width: '50%', height: '100%'}}
-          source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`}
+          source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`} 
           alt={movieDetails} />
         <View>
           <Text>
