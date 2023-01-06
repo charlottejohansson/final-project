@@ -9,6 +9,7 @@ import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
+  const [id, setId] = useState(null); // Input title of the show/movie
   // const [source, setSource] = useState(null); // Input title of the show/movie
 	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
   const { search_result } = useParams(); // need this?
@@ -24,18 +25,16 @@ const Start = ({movies}) => {
       }
     };
 
-    //test
-
-  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}`, options)
+  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
     .then(response => response.json())
     .then(response => setSearchResults(response.results))
     .catch(err => console.error(err));
 
-    fetch(`https://watchmode.p.rapidapi.com/v1/title/${id}/sources`, options)
-    .then(response => response.json())
-    .then(response => setSearchResults(response.results))
-    .catch(err => console.error(err));
-  }
+  //   fetch(`https://watchmode.p.rapidapi.com/v1/title/${id}/sources`, options)
+  //   .then(response => response.json())
+  //   .then(response => setSearchResults(response.results))
+  //   .catch(err => console.error(err));
+   }
 
   return (
     <View style={styles.container}>
@@ -47,7 +46,7 @@ const Start = ({movies}) => {
         type= "text"
         onChangeText={(text) => {
           setTitle(text);
-          // setSource(text);
+          setId(text);
           setSearchResults(null); // Remove previous results
         }}
       />
@@ -62,13 +61,23 @@ const Start = ({movies}) => {
       <View>
         {searchResults.map((item) => {
           return (
+            <View>    
+            <Link
+            key={item.id}
+            to={`/MovieDetailsSearch/${item.id}`}>
+              <View>
+                {/* <Image
+                  style={{width: '50%', height: '100%'}}
+                  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/> */}
+                 <View>
+                  <Text style={styles.text}>{item.name}</Text>
+                </View>
+              </View>
+          </Link>
+        </View>
         // <View>    
-        <Text key={item.id} style={styles.text}>{item.name} </Text>
-        // <Link
-            //key={item.id}
-            //</View>to={`/MovieDetails/${item.id}`}>
-         // </Link> 
-          // </View>
+        // <Text key={item.id} style={styles.text}>{item.name} </Text>
+        // </View>
           )
         })}
       </View>

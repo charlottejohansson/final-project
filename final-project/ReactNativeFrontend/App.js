@@ -19,6 +19,7 @@ import profiles from "./reducers/profiles";
 
 //code from previous project ( to row 21)
 import MovieDetails from './components/MovieDetails'
+import MovieDetailsSearch from './components/MovieDetailsSearch' 
 import { POPULARMOVIE_URL } from './utils/utils'
 
 const reducer = combineReducers({
@@ -61,6 +62,7 @@ export default function App() {
           <Route path='*' element={<Notfound />} /> 
           <Route path="/" element={<Start movies={movieList} />} />
           <Route path="/MovieDetails/:movie_id" element={<MovieDetails />} />
+          <Route path="/MovieDetailsSearch/:movie_id" element={<MovieDetailsSearch />} />
         </Routes>
       </NativeRouter> 
     </Provider>
