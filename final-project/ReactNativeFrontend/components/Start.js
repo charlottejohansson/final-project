@@ -81,31 +81,33 @@ const Start = ({movies}) => {
           {searchResults.map((item) => {
             return (
               <View>    
-            <Link
-              key={item.id}
-              to={`/MovieDetailsSearch/${item.id}`}>
-              <Text key={item.name} style={styles.text}>{item.name}</Text>
-              </Link>
+                <Link
+                  key={item.id}
+                  to={`/MovieDetailsSearch/${item.id}`}>
+                  <Text key={item.name} style={styles.text}>{item.name}</Text>
+                </Link>
               </View>
             )
           })}
         </View>
       )}
-
-      <View>
+      {/* New releases */}
+      <View style={{paddingVertical: spacing.L, width: "100%", gap:"15pt"}}>
+        <Text style={styles.h2}>New Releases</Text>
         {movies.map((movie) => (
           <Link
             key={movie.id}
             to={`/MovieDetails/${movie.id}`}>
+            <View>
+              <Image
+                style={styles.movieImage}
+                source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}/>
+                <View style={styles.overlay}/>
               <View>
-                <Image
-                  style={{width: '50%', height: '100%'}}
-                  source={{ uri: `https://image.tmdb.org/t/p/w342${movie.poster_path}` }}/>
-                 <View>
-                  <Text style={styles.text}>{movie.title}</Text>
-                  <Text>Released {movie.release_date}</Text>
-                </View>
+                <Text style={styles.movieText}>{movie.title}</Text>
+                {/* <Text>Released {movie.release_date}</Text> */}
               </View>
+            </View>
           </Link>
         ))}
         </View>
@@ -137,18 +139,22 @@ const styles = StyleSheet.create({
       flex: 1,
     },
 
+    h2: {
+      fontSize: size.M,
+      lineHeight: lineheight.M,
+      color: palette.lavenderBlush,
+    },
+
     text: {
       color: palette.lavenderBlush
     },
 
     header: {
-      borderWidth: 0,
-      borderColor: "#fff",
       flexDirection: "row",
       justifyContent: "center",
       paddingTop: spacing.XXL,
       paddingBottom: spacing.M,
-      width: "100%"
+      width: "100%",
     },
 
     textHeader: {
@@ -161,6 +167,31 @@ const styles = StyleSheet.create({
       position: "absolute",
       right: -93,
       paddingVertical: 3,
+    },
+
+    movieImage: {
+      width: 'stretch', 
+      height: '150pt',
+      borderRadius: "10pt",
+      borderWidth: "1pt",
+      borderColor: palette.darkPurple,
+    },
+
+    movieText: {
+      color: palette.lavenderBlush,
+      fontSize: size.S,
+      position: "absolute",
+      top: "-135pt",
+      left: "15pt",
+    },
+
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.2)", 
+      width: "100%", 
+      height: "150pt",
+      position: "absolute",
+      top: 0, 
+      left: 0
     }
 });
   
