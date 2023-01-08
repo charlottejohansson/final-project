@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
-import { StyleSheet, Text, View, TextInput, Pressable, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Image } from "react-native";
 import { Typography, Containers, Spacing } from '../styles'
 import { PrimaryIconBtn } from "../styles/buttons";
 import { palette } from "../styles/colors";
@@ -147,26 +147,6 @@ const styles = StyleSheet.create({
 
     text: {
       color: palette.lavenderBlush
-    },
-
-    header: {
-      flexDirection: "row",
-      justifyContent: "center",
-      paddingTop: spacing.XXL,
-      paddingBottom: spacing.M,
-      width: "100%",
-    },
-
-    textHeader: {
-      fontSize: size.M,
-      lineHeight: lineheight.M,
-      color: palette.lavenderBlush
-    },
-
-    icon: {
-      position: "absolute",
-      right: -93,
-      paddingVertical: 3,
     },
 
     movieImage: {

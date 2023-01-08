@@ -1,6 +1,5 @@
 import { StyleSheet, TextInput} from "react-native";
 import { palette } from "./colors";
-import { Spacing, Typography, Colors } from '../styles'
 import { size, lineheight } from "./typography"
 
 export const InputField = ({ placeholder, onChangeText }) => (
@@ -18,11 +17,11 @@ const primary = StyleSheet.create({
         borderColor: palette.darkPurple,
         backgroundColor: palette.lavenderBlush04,
         color: palette.lavenderBlush,
-        paddingTop: size.M,
-        paddingBottom: size.M,
+        paddingTop: size.S,
+        paddingBottom: size.S,
         paddingLeft: size.M,
-        paddingRight: size.M,
-        borderRadius: 30,
+        paddingRight: size.S,
+        borderRadius: 40,
         fontSize: size.M,
         lineHeight: lineheight.M,
     }

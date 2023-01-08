@@ -3,10 +3,13 @@ import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
-import { Colors, Typography, Containers } from '../styles'
-import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 
+import { StyleSheet, Text, View, Button } from "react-native";
+import { Typography, Containers, Colors } from '../styles'
+import { PrimaryBtn } from "../styles/buttons";
+import { InputField } from "../styles/inputfield";
+import { Heading } from "../styles/heading";
+import { spacing } from "../styles/spacing";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -58,35 +61,38 @@ const Login = () => {
     
     return (    
         <View style={styles.container} onPress={(onFormSubmit)}>
-            <Text style={styles.text}> Login page! </Text>
-            <TextInput
-                placeholder="Enter username" 
-                style={styles.input}
-                onChangeText={setUsername}
-                value={username}
-                autoCapitalize="none" //meaning?
-                returnKeyType="next" // meaning?
-                blurOnSubmit={false} // meaning?
-                onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
-            />
-            <TextInput 
-                placeholder="Enter Password" 
-                ref={passwordInputRef}
-                value={password} 
-                blurOnSubmit={false}
-                secureTextEntry={true}
-                onChangeText={setPassword}
-                returnKeyType="next"
-            />
-            <Button 
-                title="login"
-                onPress={(onFormSubmit)}
-                type="submit"
-            />
-            <Text style={styles.text}>Don't have an account?</Text>
-            <Link to='/register'>
-                <Text>Sign up here</Text>
-            </Link>
+            <Text style={styles.h2}>Login </Text>
+            <View style={styles.innerWrapper}>
+                <InputField
+                    placeholder="Username" 
+                    onChangeText={setUsername}
+                    value={username}
+                    autoCapitalize="none" //meaning?
+                    returnKeyType="next" // meaning?
+                    blurOnSubmit={false} // meaning?
+                    onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+                />
+                <InputField 
+                    placeholder="Password" 
+                    ref={passwordInputRef}
+                    value={password} 
+                    blurOnSubmit={false}
+                    secureTextEntry={true}
+                    onChangeText={setPassword}
+                    returnKeyType="next"
+                />
+                <PrimaryBtn 
+                    title="Login"
+                    onPress={(onFormSubmit)}
+                    type="submit"
+                />
+                <Text style={styles.text}>Don't have an account?
+                    <Link to='/register'>
+                        <Text style={styles.linkText}>Sign up here</Text>
+                    </Link>
+                </Text>
+            </View>
+            
             <Button 
                 title="Back to start page"
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}}
@@ -97,19 +103,36 @@ const Login = () => {
 }
 const styles = StyleSheet.create({
     container: {
-      ...Containers.outerContainer,
+        ...Containers.outerContainer,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    h2: {
+        ...Typography.h2,
+        color: Colors.palette.lavenderBlush,
     },
   
     text: {
-      ...Typography.body2,
-      color: Colors.palette.lavenderBlush,
+        ...Typography.body2,
+        color: Colors.palette.lavenderBlush,
+        textAlign: "center",
+    },
+
+    linkText: {
+        ...Typography.body2,
+        color: Colors.palette.frostbite,
+        padding: "3pt",
     },
   
     textInput: {
-      color: Colors.palette.lavenderBlush,
+        color: Colors.palette.lavenderBlush,
+    },
+
+    innerWrapper: {
+        gap: spacing.M,
     }
 });
-
 
 export default Login;
 

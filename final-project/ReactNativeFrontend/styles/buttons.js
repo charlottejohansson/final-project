@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, Image, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, TouchableHighlight } from "react-native";
 import { palette } from "./colors";
 import { spacing } from "./spacing";
 import { size, lineheight } from './typography'
@@ -19,6 +19,7 @@ const primary = StyleSheet.create({
     paddingLeft: spacing.L,
     paddingRight: spacing.L,
     borderRadius: 30,
+    alignItems: "center",
   },
   
   text: {
