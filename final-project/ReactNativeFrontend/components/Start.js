@@ -18,6 +18,38 @@ const Start = ({movies}) => {
   const { search_result } = useParams(); // need this?
 
 
+  // code to fetch two api //
+  // var movieSearch;
+
+  // // Call the API
+  // fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
+  //   .then(function (response){
+  //     if (response.ok) {
+  //         return response.json(response.results);
+  //     } else {
+  //         return Promise.reject(response);
+  //     }
+  // }).then(function (data) {
+  
+  //     // Store the post data to a variable
+  //     movieSearch = data;
+  
+  //     // Fetch another API
+  //     return fetch('https://watchmode.p.rapidapi.com/title/345534/sources/', options)
+  
+  // }).then(function (response) {
+  //     if (response.ok) {
+  //         return response.json(response.results);
+  //     } else {
+  //         return Promise.reject(response);
+  //     }
+  // }).then(function (movieSource) {
+  //     console.log(movieSearch, movieSource);
+  // }).catch(function (error) {
+  //     console.warn(error);
+  // });
+  //end of code//
+
   const onFormSubmit = (event) => {
     event.preventDefault();
     const options = {
