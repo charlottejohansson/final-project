@@ -12,44 +12,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const Start = ({movies}) => {
 
   const [title, setTitle] = useState(null); // Input title of the show/movie
-  const [id, setId] = useState(null); // Input title of the show/movie
+  // const [id, setId] = useState(null); // Input title of the show/movie
   // const [source, setSource] = useState(null); // Input title of the show/movie
-	const [searchResults, setSearchResults] = useState(null); // Response 1: Results matching the input title
+	const [searchResults, setSearchResults] = useState([]); // Response 1: Results matching the input title
   const { search_result } = useParams(); // need this?
 
 
-  // code to fetch two api //
-  // var movieSearch;
-
-  // // Call the API
-  // fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
-  //   .then(function (response){
-  //     if (response.ok) {
-  //         return response.json(response.results);
-  //     } else {
-  //         return Promise.reject(response);
-  //     }
-  // }).then(function (data) {
   
-  //     // Store the post data to a variable
-  //     movieSearch = data;
-  
-  //     // Fetch another API
-  //     return fetch('https://watchmode.p.rapidapi.com/title/345534/sources/', options)
-  
-  // }).then(function (response) {
-  //     if (response.ok) {
-  //         return response.json(response.results);
-  //     } else {
-  //         return Promise.reject(response);
-  //     }
-  // }).then(function (movieSource) {
-  //     console.log(movieSearch, movieSource);
-  // }).catch(function (error) {
-  //     console.warn(error);
-  // });
-  //end of code//
-
   const onFormSubmit = (event) => {
     event.preventDefault();
     const options = {
@@ -60,15 +29,19 @@ const Start = ({movies}) => {
       }
     };
 
-  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
-    .then(response => response.json())
-    .then(response => setSearchResults(response.results))
-    .catch(err => console.error(err));
+  var movieSearch;
 
-  //   fetch(`https://watchmode.p.rapidapi.com/v1/title/${id}/sources`, options)
-  //   .then(response => response.json())
-  //   .then(response => setSearchResults(response.results))
-  //   .catch(err => console.error(err));
+  // Call the API
+  fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
+    .then(function (response){
+          return response.json();
+  }).then(function (data) {
+      setSearchResults(data.results)
+      console.log(data)
+  }).catch(function (error) {
+      console.warn(error);
+  });
+
    }
 
   return (
@@ -98,7 +71,7 @@ const Start = ({movies}) => {
           type="text"
           onChangeText={(text) => {
             setTitle(text);
-            setSearchResults(null); // Remove previous results
+            setSearchResults([]); // Remove previous results
         }}/>
         <PrimaryIconBtn
           name={"search"}
