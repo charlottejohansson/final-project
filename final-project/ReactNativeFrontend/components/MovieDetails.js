@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-native';
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import { MOVIEDETAILS_URL } from '../utils/utils';
+import { Colors, Typography, Containers } from '../styles'
+import { Heading } from '../styles/heading';
+import { palette } from '../styles/colors';
 
 const MovieDetails = () => {
   const [ movieDetails, setMovieDetails ] = useState({});
@@ -21,23 +24,20 @@ const MovieDetails = () => {
   };
 
   return (
-    <View>
-      <Image
-        style={{width: '50%', height: '100%'}}
-        source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
-    <View/>
-      <View>
+    <View style={styles.outerContainer}>¨
         <Image
-          style={{width: '50%', height: '100%'}}
-          source={`https://image.tmdb.org/t/p/w342${movieDetails.poster_path}`} 
-          alt={movieDetails} />
+          style={{width: '100%', height: '100%', position: "absolute"}}
+          source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
+        <View style={styles.overlay}/>
+      <Heading/>
+      <View style={styles.innerContainer}>
         <View>
-          <Text>
+          <Text style={styles.h2}>
             {movieDetails.title}
             ⭐️ {Math.round(movieDetails.vote_average * 10) / 10}
           </Text>
-          <Text>{movieDetails.tagline}</Text>
-          <Text>{movieDetails.overview}</Text>
+          <Text style={styles.h3}>{movieDetails.tagline}</Text>
+          <Text style={styles.text}>{movieDetails.overview}</Text>
         </View>
         </View>
       <View>
@@ -49,5 +49,43 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    backgroundColor: palette.xiketic,
+    alignItems: 'center',
+  },
 
+  innerContainer: {
+    height: "80%",
+    alignItems: 'center',
+    marginHorizontal: 20,
+    justifyContent: "flex-end"
+  },
+
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.3)", 
+    width: "100%", 
+    height: "100%",
+    position: "absolute",
+    top: 0, 
+    left: 0
+  },
+
+  h2: {
+    ...Typography.h2,
+    color: palette.lavenderBlush
+  },
+
+  h3: {
+    ...Typography.h3,
+    color: palette.lavenderBlush
+  },
+
+  text: {
+    color: palette.lavenderBlush
+  }
+
+});
+
+export default MovieDetails;

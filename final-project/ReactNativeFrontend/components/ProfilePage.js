@@ -5,7 +5,8 @@ import { API_URL } from '../utils/utils'
 import { useNavigate, Link } from "react-router-native";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Colors, Typography, Containers } from '../styles'
-import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
+import { Heading } from '../styles/heading'
+import { PrimaryBtn} from "../styles/buttons";
 import user from '../reducers/user';
 
 const ProfilePage = () => {
@@ -43,13 +44,16 @@ const ProfilePage = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>ProfilePage - it's working!</Text>
-            <Button 
-                title="Sign out"
-                onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
-                type="submit"
-            />
+        <View style={{...Containers.outerContainer}}>
+            <Heading/>
+            <View style={styles.container}>
+                <Text style={styles.text}>ProfilePage - it's working!</Text>
+                <PrimaryBtn 
+                    title="Sign out"
+                    onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
+                    type="submit"
+                />
+            </View>
         </View>
     );
 }
@@ -57,6 +61,7 @@ const ProfilePage = () => {
 const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
+      justifyContent: "center",
     },
   
     text: {

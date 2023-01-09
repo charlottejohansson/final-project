@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
-import { StyleSheet, Text, View, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Image, ScrollView } from "react-native";
 import { Typography, Containers, Spacing } from '../styles'
 import { PrimaryIconBtn } from "../styles/buttons";
+import { Heading } from "../styles/heading";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
@@ -46,39 +47,29 @@ const Start = ({movies}) => {
 
   return (
     <View style={styles.container}>
-      {/* Header with login */}
-      <View style={styles.header}>
-        <Link to="/">
-          <Text style={styles.textHeader}>Stream.guide</Text>
-        </Link>
-        <Link to='/login'>
-          <FontAwesome5 
-            style={styles.icon} 
-            name="user-circle" 
-            size={24} 
-            color={palette.lavenderBlush} />
-        </Link>
+      <View style={styles.headerContainer}>
+        <Heading/>
+        <View style={styles.searchBar}>
+          <TextInput
+            style={styles.input}
+            placeholder="Search movies"
+            placeholderTextColor="rgba(252,238,247,0.5)" 
+            returnKeyType="search"
+            keyboardType="default"
+            type="text"
+            onChangeText={(text) => {
+              setTitle(text);
+              setSearchResults(null); // Remove previous results
+          }}/>
+          <PrimaryIconBtn
+            name={"search"}
+            size={24}
+            onPress={(onFormSubmit)}
+            type="submit"/>
+        </View>
       </View>
-    
       {/* Searchbar */}
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search movies"
-          placeholderTextColor="rgba(252,238,247,0.5)" 
-          returnKeyType="search"
-          keyboardType="default"
-          type="text"
-          onChangeText={(text) => {
-            setTitle(text);
-            setSearchResults([]); // Remove previous results
-        }}/>
-        <PrimaryIconBtn
-          name={"search"}
-          size={24}
-          onPress={(onFormSubmit)}
-          type="submit"/>
-      </View>
+      
       
       {/* Search results */}
       {searchResults && (
@@ -97,7 +88,7 @@ const Start = ({movies}) => {
         </View>
       )}
       {/* New releases */}
-      <View style={{paddingVertical: spacing.L, width: "100%", gap:"15pt"}}>
+      <ScrollView style={{paddingVertical: spacing.S, width: "100%" }}>
         <Text style={styles.h2}>New Releases</Text>
         {movies.map((movie) => (
           <Link
@@ -107,15 +98,12 @@ const Start = ({movies}) => {
               <Image
                 style={styles.movieImage}
                 source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}/>
-                <View style={styles.overlay}/>
-              <View>
-                <Text style={styles.movieText}>{movie.title}</Text>
-                {/* <Text>Released {movie.release_date}</Text> */}
-              </View>
+              <View style={styles.overlay}/>
+              <Text style={styles.movieText}>{movie.title}</Text>
             </View>
           </Link>
         ))}
-        </View>
+        </ScrollView>
     </View>
   );
 }
@@ -125,6 +113,11 @@ const styles = StyleSheet.create({
       ...Containers.outerContainer,
     },
 
+    headerContainer: {
+      paddingBottom: 20,
+      width: "100%",
+    },
+    
     searchBar: {
       backgroundColor: palette.lavenderBlush04,
       borderColor: palette.darkPurple,
@@ -132,7 +125,6 @@ const styles = StyleSheet.create({
       borderRadius: 35,
       flexDirection: "row",
       paddingLeft: size.M,
-      width: "100%",
     },
 
     input: {
@@ -155,25 +147,25 @@ const styles = StyleSheet.create({
     },
 
     movieImage: {
-      width: 'stretch', 
-      height: '150pt',
-      borderRadius: "10pt",
-      borderWidth: "1pt",
+      height: 150,
+      borderRadius: 10,
+      borderWidth: 1,
       borderColor: palette.darkPurple,
+      marginBottom: 15
     },
 
     movieText: {
       color: palette.lavenderBlush,
       fontSize: size.S,
       position: "absolute",
-      top: "-135pt",
-      left: "15pt",
+      top: 15,
+      left: 15,
     },
 
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.2)", 
       width: "100%", 
-      height: "150pt",
+      height: 150,
       position: "absolute",
       top: 0, 
       left: 0
