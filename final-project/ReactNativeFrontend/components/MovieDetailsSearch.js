@@ -59,19 +59,17 @@ const MovieDetailsSearch = () => {
       <View style={styles.outerContainer}>
         <Image
             style={{width: '100%', height: '100%', position: "absolute"}}
-            source= {movieDetails.backdrop} />
+            source= {{uri: `${movieDetails.backdrop}` }}/>
+
       <View style={styles.overlay}/>
       <View style={styles.innerContainer}>
         <Text style={styles.h2}>{movieDetails.original_title}</Text>
         <Text style={styles.text}>{movieDetails.plot_overview}</Text>
       <View style={styles.tagContainer}>
         {movieSource.map(movie => (
-          <Link 
-            style={styles.tags}
-            key={movie.source_id}
-            href={movie.web_url}>
-            <Text style = {{color: "white"}} >{movie.name}</Text>
-          </Link>
+          <View style={styles.tags}>
+           <Text key={movie.source_id} style = {{color: "white"}} >{movie.name}</Text>
+           </View> 
           ))}
         </View> 
       </View>
@@ -80,7 +78,6 @@ const MovieDetailsSearch = () => {
           <Button title="Go back" onPress={goBack}></Button>
         </View>
       </View>
-      
       )
     } 
 
@@ -144,7 +141,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0, 
     left: 0,
-  }
+  },
+
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
+  },
 
   
 })

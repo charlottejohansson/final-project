@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Link } from "react-router-native";
+import { palette } from "../styles/colors";
 
 const NotFound = () => {
     return (
@@ -15,7 +16,7 @@ const NotFound = () => {
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: palette.xiketic,
     alignItems: 'center',
     justifyContent: 'center',
     },

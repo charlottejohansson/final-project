@@ -1,13 +1,9 @@
 // import React from 'react';
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import React, {useState, useEffect} from "react";
-
-
-// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-// import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
-// import { Colors, Typography, Containers } from '../ReactNativeFrontend/styles'
+
 import Start from './components/Start'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -15,9 +11,8 @@ import ProfilePage from './components/ProfilePage'
 import Notfound from './components/Notfound'
 import user from "./reducers/user";
 import profiles from "./reducers/profiles";
-// import Icon from '../ReactNativeFrontend/icons/';
 
-//code from previous project ( to row 21)
+
 import MovieDetails from './components/MovieDetails'
 import MovieDetailsSearch from './components/MovieDetailsSearch' 
 import { POPULARMOVIE_URL } from './utils/utils'
@@ -30,7 +25,6 @@ const reducer = combineReducers({
 const store = configureStore({ reducer });
 
 export default function App() {
-  //code from previous project ( to row 57 & row 68 & 69)
   const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,11 +40,6 @@ export default function App() {
         }, 2000);
       })
   }, []);
-
-  // if (loading) {
-  //   return (
-  //   );
-  // }
 
   return (
     <Provider store={store}>

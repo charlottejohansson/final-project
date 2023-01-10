@@ -25,7 +25,7 @@ const Register = () => {
         }
     }, [accessToken])
 
-    const passwordInputRef = createRef(); // meaning?
+    const passwordInputRef = createRef();
 
     const onFormSubmit =(event) => {
         event.preventDefault();
@@ -69,9 +69,9 @@ const Register = () => {
                         style={styles.input}
                         onChangeText={setUsername}
                         value={username}
-                        autoCapitalize="none" //meaning?
-                        returnKeyType="next" // meaning?
-                        blurOnSubmit={false} // meaning?
+                        autoCapitalize="none"
+                        returnKeyType="next" 
+                        blurOnSubmit={false} 
                         onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
                     />
                     <InputField 

@@ -12,13 +12,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const Start = ({movies}) => {
 
-  const [title, setTitle] = useState(null); // Input title of the show/movie
-  // const [id, setId] = useState(null); // Input title of the show/movie
-  // const [source, setSource] = useState(null); // Input title of the show/movie
-	const [searchResults, setSearchResults] = useState([]); // Response 1: Results matching the input title
-  const { search_result } = useParams(); // need this?
-
-
+  const [title, setTitle] = useState(null);
+	const [searchResults, setSearchResults] = useState([]);
   
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -59,7 +54,7 @@ const Start = ({movies}) => {
             type="text"
             onChangeText={(text) => {
               setTitle(text);
-              setSearchResults(null); // Remove previous results
+              setSearchResults(null);
           }}/>
           <PrimaryIconBtn
             name={"search"}
@@ -76,7 +71,7 @@ const Start = ({movies}) => {
         <View>
           {searchResults.map((item) => {
             return (
-              <View>    
+              <View style = {styles.searchPage}>    
                 <Link
                   key={item.id}
                   to={`/MovieDetailsSearch/${item.id}`}>
@@ -87,6 +82,8 @@ const Start = ({movies}) => {
           })}
         </View>
       )}
+
+
       {/* New releases */}
       <ScrollView style={{paddingVertical: spacing.S, width: "100%" }}>
         <Text style={styles.h2}>New Releases</Text>
@@ -118,6 +115,15 @@ const styles = StyleSheet.create({
       width: "100%",
     },
     
+    searchPage: {
+        color: "rgba(0, 0, 0, 0.3)", 
+        width: "100%", 
+        height: "100%",
+        // position: "absolute",
+        top: 0, 
+        left: 0,
+ },
+
     searchBar: {
       backgroundColor: palette.lavenderBlush04,
       borderColor: palette.darkPurple,
