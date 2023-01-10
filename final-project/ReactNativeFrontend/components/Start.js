@@ -25,7 +25,7 @@ const Start = ({movies}) => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'e8ab353f9dmsh0ed7b069671f69cp1bb323jsn7175036a5189',
+        'X-RapidAPI-Key': '9a7382db50msh6462aa86d1ccba6p1903c0jsn219a84a3cae4',
         'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
       }
     };
@@ -80,7 +80,7 @@ const Start = ({movies}) => {
                 <Link
                   key={item.id}
                   to={`/MovieDetailsSearch/${item.id}`}>
-                  <Text key={item.name} style={styles.text}>{item.name}</Text>
+                  <Text style={styles.text}>{item.name}</Text>
                 </Link>
               </View>
             )
