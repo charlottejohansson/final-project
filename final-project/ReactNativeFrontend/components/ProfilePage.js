@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector, Provider } from "react-redux";
 import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
-import { useNavigate, Link } from "react-router-native";
+import { useNavigate } from "react-router-native";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { Colors, Typography, Containers } from '../styles'
+import { spacing } from "../styles/spacing.js";
 import { Heading } from '../styles/heading'
 import { PrimaryBtn} from "../styles/buttons";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import user from '../reducers/user';
 
 
@@ -49,13 +51,19 @@ const ProfilePage = () => {
         <View style={{...Containers.outerContainer}}>
             <Heading/>
             <View style={styles.container}>
-                <Text style={styles.text}>ProfilePage - it's working!</Text>
-                <PrimaryBtn 
+                <Text style={styles.h2}>Profile functions</Text>
+                <Text style={styles.h2}>Coming soon</Text>
+                <FontAwesome5 
+                    style={{marginTop: 30}}
+                    name="gift" 
+                    size={100} 
+                    color={Colors.palette.lavenderBlush} /> 
+            </View>
+            <PrimaryBtn 
                     title="Sign out"
                     onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                     type="submit"
                 />
-            </View>
         </View>
 
     );
@@ -63,8 +71,17 @@ const ProfilePage = () => {
 
 const styles = StyleSheet.create({
     container: {
-      ...Containers.outerContainer,
-      justifyContent: "center",
+        justifyContent: "center",
+        alignItems: 'center',
+        paddingLeft: spacing.M,
+        paddingRight: spacing.M,
+        opacity: "40%",
+        height: "70%",
+    },
+
+    h2: {
+        ...Typography.h2,
+        color: Colors.palette.lavenderBlush,
     },
   
     text: {
