@@ -62,7 +62,7 @@ export default function App() {
           <Route path='*' element={<Notfound />} /> 
           <Route path="/" element={<Start movies={movieList} />} />
           <Route path="/MovieDetails/:movie_id" element={<MovieDetails />} />
-          <Route path="/MovieDetailsSearch/:title" element={<MovieDetailsSearch />} />
+          <Route path="/MovieDetailsSearch/:movie_id" element={<MovieDetailsSearch />} />
         </Routes>
       </NativeRouter> 
     </Provider>

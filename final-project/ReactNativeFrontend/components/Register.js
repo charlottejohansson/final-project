@@ -5,7 +5,10 @@ import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
 import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
 import { Colors, Typography, Containers } from '../styles'
-import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
+import { PrimaryBtn } from "../styles/buttons";
+import { InputField } from "../styles/inputfield";
+import { Heading } from "../styles/heading";
+import { spacing } from "../styles/spacing";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -57,8 +60,11 @@ const Register = () => {
 
     return (
         <View style={styles.container} onPress={(onFormSubmit)}>
-                <Text style={styles.text}>Register page!</Text>
-                    <TextInput
+            <Heading/>
+            <View style={styles.container} onPress={(onFormSubmit)}>
+                <View style={styles.innerWrapper}>
+                    <Text style={styles.h2}>Register</Text>
+                    <InputField
                         placeholder="Enter username" 
                         style={styles.input}
                         onChangeText={setUsername}
@@ -68,40 +74,57 @@ const Register = () => {
                         blurOnSubmit={false} // meaning?
                         onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
                     />
-                <TextInput 
-                    placeholder="Enter Password" 
-                    ref={passwordInputRef}
-                    value={password} 
-                    blurOnSubmit={false}
-                    secureTextEntry={true}
-                    onChangeText={setPassword}
-                    returnKeyType="next" 
-                />
-                <Text style={styles.text}>
-                    {password && password.length < 8
-                        ? 'password must be over 8 characters'
-                        : ''}
-                    <Button 
+                    <InputField 
+                        placeholder="Enter Password" 
+                        ref={passwordInputRef}
+                        value={password} 
+                        blurOnSubmit={false}
+                        secureTextEntry={true}
+                        onChangeText={setPassword}
+                        returnKeyType="next" 
+                    />
+                    <PrimaryBtn 
                         title="Sign up"
                         onPress={(onFormSubmit)}
                         type="submit"
-                        />
-                                {error !== null && (
-                    <Text style={{ fontSize: '21px', color: 'red' }}>{error}</Text>
-                     )}
-                 </Text>
-          </View>
+                    />
+                    <Text style={styles.text}>
+                        {password && password.length < 8
+                            ? 'Password must be over 8 characters'
+                            : ''}
+                        {error !== null && (
+                            <Text style={{ fontSize: '21px', color: 'white' }}>{error}</Text>
+                        )}
+                    </Text>
+                    
+                </View>
+            </View>
+                
+            
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
+      justifyContent: "center",
+    },
+
+    innerWrapper: {
+        gap: spacing.M,
+        alignContent: "flex-start",
+    },
+
+    h2: {
+        ...Typography.h2,
+        color: Colors.palette.lavenderBlush,
     },
   
     text: {
       ...Typography.body2,
       color: Colors.palette.lavenderBlush,
+      textAlign: "center"
     },
   
     textInput: {

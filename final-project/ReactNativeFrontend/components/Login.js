@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
 
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Typography, Containers, Colors } from '../styles'
 import { PrimaryBtn } from "../styles/buttons";
 import { InputField } from "../styles/inputfield";
@@ -59,58 +59,56 @@ const Login = () => {
             })
     }
     
-    return (    
-        <View style={styles.container} onPress={(onFormSubmit)}>
-            <Text style={styles.h2}>Login </Text>
-            <View style={styles.innerWrapper}>
-                <InputField
-                    placeholder="Username" 
-                    onChangeText={setUsername}
-                    value={username}
-                    autoCapitalize="none" //meaning?
-                    returnKeyType="next" // meaning?
-                    blurOnSubmit={false} // meaning?
-                    onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
-                />
-                <InputField 
-                    placeholder="Password" 
-                    ref={passwordInputRef}
-                    value={password} 
-                    blurOnSubmit={false}
-                    secureTextEntry={true}
-                    onChangeText={setPassword}
-                    returnKeyType="next"
-                />
-                <PrimaryBtn 
-                    title="Login"
-                    onPress={(onFormSubmit)}
-                    type="submit"
-                />
-                <Text style={styles.text}>Don't have an account?
-                    <Link to='/register'>
-                        <Text style={styles.linkText}>Sign up here</Text>
-                    </Link>
-                </Text>
+    return (   
+        <View style={styles.container}>
+            <Heading/> 
+            <View style={styles.container} onPress={(onFormSubmit)}>
+                <View style={styles.innerWrapper}>
+                    <Text style={styles.h2}>Login</Text>
+                    <InputField
+                        placeholder="Username" 
+                        onChangeText={setUsername}
+                        value={username}
+                        autoCapitalize="none" //meaning?
+                        returnKeyType="next" // meaning?
+                        blurOnSubmit={false} // meaning?
+                        onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+                    />
+                    <InputField 
+                        placeholder="Password" 
+                        ref={passwordInputRef}
+                        value={password} 
+                        blurOnSubmit={false}
+                        secureTextEntry={true}
+                        onChangeText={setPassword}
+                        returnKeyType="next"
+                    />
+                    <PrimaryBtn 
+                        title="Login"
+                        onPress={(onFormSubmit)}
+                        type="submit"
+                    />
+                    <Text style={styles.text}>Don't have an account?
+                        <Link to='/register'>
+                            <Text style={styles.linkText}>Sign up here</Text>
+                        </Link>
+                    </Text>
+                </View>
             </View>
-            
-            <Button 
-                title="Back to start page"
-                onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}}
-                type="submit"
-            />
         </View>
+        
     )
 }
 const styles = StyleSheet.create({
     container: {
         ...Containers.outerContainer,
         justifyContent: "center",
-        alignItems: "center",
     },
 
     h2: {
         ...Typography.h2,
         color: Colors.palette.lavenderBlush,
+        paddingBottom: spacing.XS,
     },
   
     text: {
@@ -122,15 +120,13 @@ const styles = StyleSheet.create({
     linkText: {
         ...Typography.body2,
         color: Colors.palette.frostbite,
-        padding: "3pt",
-    },
-  
-    textInput: {
-        color: Colors.palette.lavenderBlush,
+        paddingTop: 2,
+        paddingLeft: 4,
     },
 
     innerWrapper: {
-        gap: spacing.M,
+        width: "100%",
+        alignContent: "flex-start"
     }
 });
 

@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput} from "react-native";
 import { palette } from "./colors";
 import { size, lineheight } from "./typography"
+import { spacing } from "./spacing";
 
 export const InputField = ({ placeholder, onChangeText }) => (
     <TextInput
@@ -24,5 +25,6 @@ const primary = StyleSheet.create({
         borderRadius: 40,
         fontSize: size.M,
         lineHeight: lineheight.M,
+        marginBottom: spacing.M
     }
 })
