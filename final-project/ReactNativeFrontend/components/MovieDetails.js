@@ -32,14 +32,11 @@ const MovieDetails = () => {
       <Heading/>
       <View style={styles.innerContainer}>
         <View>
-          <Text style={styles.h2}>
-            {movieDetails.title}
-            ⭐️ {Math.round(movieDetails.vote_average * 10) / 10}
-          </Text>
-          <Text style={styles.h3}>{movieDetails.tagline}</Text>
+          <Text style={styles.h2}>{movieDetails.title}</Text>
+          <Text style={styles.h3}>{Math.round(movieDetails.vote_average * 10) / 10}</Text>
           <Text style={styles.text}>{movieDetails.overview}</Text>
         </View>
-        </View>
+      </View>
       <View>
         <Button title="Go back" onPress={goBack}>
         <Text>loading</Text>

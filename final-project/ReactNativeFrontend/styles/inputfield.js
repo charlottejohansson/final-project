@@ -3,11 +3,12 @@ import { palette } from "./colors";
 import { size, lineheight } from "./typography"
 import { spacing } from "./spacing";
 
-export const InputField = ({ placeholder, onChangeText }) => (
+export const InputField = ({ placeholder, onChangeText, secureTextEntry }) => (
     <TextInput
         style={primary.input}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
         placeholderTextColor="rgba(252,238,247,0.5)" 
       />
 )

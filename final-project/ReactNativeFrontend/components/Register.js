@@ -77,7 +77,6 @@ const Register = () => {
                     <InputField 
                         placeholder="Enter Password" 
                         ref={passwordInputRef}
-                        value={password} 
                         blurOnSubmit={false}
                         secureTextEntry={true}
                         onChangeText={setPassword}
