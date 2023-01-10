@@ -52,7 +52,7 @@ const ProfilePage = () => {
             <Heading/>
             <View style={styles.container}>
                 <Text style={styles.h2}>Profile functions</Text>
-                <Text style={styles.h2}>Coming soon</Text>
+                <Text style={styles.h2}>coming soon</Text>
                 <FontAwesome5 
                     style={{marginTop: 30}}
                     name="gift" 
