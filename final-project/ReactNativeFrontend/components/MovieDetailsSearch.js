@@ -4,8 +4,9 @@ import { Typography, Containers, Spacing, Colors} from '../styles'
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import MovieDetails from './MovieDetails';
 import { Link } from 'react-router-native';
-import { Heading } from '../styles/heading';
-import { palette } from '../styles/colors';
+import { palette } from "../styles/colors";
+import { spacing } from "../styles/spacing";
+import { size, lineheight } from '../styles/typography'
 
 const MovieDetailsSearch = () => {
 
@@ -27,7 +28,7 @@ const MovieDetailsSearch = () => {
 
     json.forEach((element, index) => {
       const hasExistingElement = filterList.find((item) => 
-        item.source_id == element.source_id) 
+        item.source_id == element.source_id)
 
       if (!hasExistingElement)
         filterList.push(element)  
@@ -63,14 +64,16 @@ const MovieDetailsSearch = () => {
       <View style={styles.innerContainer}>
         <Text style={styles.h2}>{movieDetails.original_title}</Text>
         <Text style={styles.text}>{movieDetails.plot_overview}</Text>
-
+      <View style={styles.tagContainer}>
         {movieSource.map(movie => (
-          <Link
+          <Link 
+            style={styles.tags}
             key={movie.source_id}
-            to={movie.web_url}>
-            <Text style = {styles.h3}>{movie.name}</Text>
+            href={movie.web_url}>
+            <Text style = {{color: "white"}} >{movie.name}</Text>
           </Link>
           ))}
+        </View> 
       </View>
 
       <View>
@@ -84,6 +87,23 @@ const MovieDetailsSearch = () => {
 const styles = StyleSheet.create({
   container: {
     ...Containers.outerContainer,
+  },
+
+  tagContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 20,
+  },
+
+  tags:{
+    backgroundColor: palette.xiketic,
+    width: "auto",
+    padding: 5,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: palette.darkPurple,
+    marginLeft: 10,
+    marginBottom: 10,
   },
 
   outerContainer: {
@@ -123,7 +143,7 @@ const styles = StyleSheet.create({
     height: "100%",
     position: "absolute",
     top: 0, 
-    left: 0
+    left: 0,
   }
 
   

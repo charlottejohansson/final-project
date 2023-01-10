@@ -24,7 +24,7 @@ const MovieDetails = () => {
   };
 
   return (
-    <View style={styles.outerContainer}>¨
+    <View style={styles.outerContainer}>
         <Image
           style={{width: '100%', height: '100%', position: "absolute"}}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
