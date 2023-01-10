@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-native';
-import { Typography, Containers, Spacing } from '../styles'
+import { Typography, Containers, Spacing, Colors} from '../styles'
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
 import MovieDetails from './MovieDetails';
 import { Link } from 'react-router-native';
+import { Heading } from '../styles/heading';
+import { palette } from '../styles/colors';
 
 const MovieDetailsSearch = () => {
 
@@ -53,27 +55,80 @@ const MovieDetailsSearch = () => {
 
 
     return (
-      <View style={styles.container}>
-         <Image
-          style={{width: '100%', height: '100%', position: "absolute"}}
-          source={{ uri: `https://cdn.watchmode.com/${movieDetails.backdrop}` }}/>
-        <Text>{movieDetails.original_title}</Text>
-        <Text>{movieDetails.plot_overview}</Text>
+      <View style={styles.outerContainer}>
+        <Image
+            style={{width: '100%', height: '100%', position: "absolute"}}
+            source= {movieDetails.backdrop} />
+      <View style={styles.overlay}/>
+      <View style={styles.innerContainer}>
+        <Text style={styles.h2}>{movieDetails.original_title}</Text>
+        <Text style={styles.text}>{movieDetails.plot_overview}</Text>
 
-         {movieSource.map(movie => (
-        <Link
-        key={movie.source_id}
-        to={movie.web_url}>
-        <Text> Streaming site:{movie.name}</Text>
-        </Link>
+        {movieSource.map(movie => (
+          <Link
+            key={movie.source_id}
+            to={movie.web_url}>
+            <Text style = {styles.h3}>{movie.name}</Text>
+          </Link>
           ))}
-        <View>
+      </View>
+
+      <View>
           <Button title="Go back" onPress={goBack}></Button>
         </View>
       </View>
       
       )
-}
+    } 
+
+const styles = StyleSheet.create({
+  container: {
+    ...Containers.outerContainer,
+  },
+
+  outerContainer: {
+    flex: 1,
+    backgroundColor: palette.xiketic,
+    alignItems: 'center',
+  },
+
+  innerContainer: {
+    height: "80%",
+    alignItems: 'center',
+    marginHorizontal: 20,
+    justifyContent: "flex-end"
+  },
+
+  headerContainer: {
+    paddingBottom: 20,
+    width: "100%",
+  },
+
+  h2: {
+    ...Typography.h2,
+    color: palette.lavenderBlush
+  },
+
+  h3: {
+    ...Typography.h3,
+    color: palette.lavenderBlush
+  },
+
+  text: {
+    color: palette.lavenderBlush
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.3)", 
+    width: "100%", 
+    height: "100%",
+    position: "absolute",
+    top: 0, 
+    left: 0
+  }
+
+  
+})
+
 
 
 export default MovieDetailsSearch;
