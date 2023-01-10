@@ -8,7 +8,7 @@ import { Heading } from "../styles/heading";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { MovieCard } from "../styles/movieCard";
 
 const Start = ({movies}) => {
 
@@ -78,28 +78,29 @@ const Start = ({movies}) => {
                   <Text style={styles.text}>{item.name}</Text>
                 </Link>
               </View>
-            )
+            );
           })}
         </View>
       )}
 
 
       {/* New releases */}
-      <ScrollView style={{paddingVertical: spacing.S, width: "100%" }}>
+      <ScrollView style={{
+        paddingVertical: spacing.S, 
+        width: "100%"}}>
         <Text style={styles.h2}>New Releases</Text>
-        {movies.map((movie) => (
-          <Link
-            key={movie.id}
-            to={`/MovieDetails/${movie.id}`}>
-            <View>
-              <Image
-                style={styles.movieImage}
-                source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}/>
-              <View style={styles.overlay}/>
-              <Text style={styles.movieText}>{movie.title}</Text>
-            </View>
-          </Link>
-        ))}
+        <View style={styles.movieCardContainer}>
+          {movies.map((movie) => (
+            <Link
+                key={movie.id}
+                to={`/MovieDetails/${movie.id}`}>
+              <MovieCard
+                title={movie.title}
+                source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}
+              />
+            </Link>
+          ))}
+        </View>
         </ScrollView>
     </View>
   );
@@ -113,6 +114,16 @@ const styles = StyleSheet.create({
     headerContainer: {
       paddingBottom: 20,
       width: "100%",
+      paddingHorizontal: 20,
+      alignItems: "center"
+    },
+
+    movieCardContainer: {
+      justifyContent: "center",
+      paddingVertical: spacing.XS, 
+      width: "100%",
+      flexDirection: "row",
+      flexWrap: "wrap",
     },
     
     searchPage: {
@@ -122,7 +133,7 @@ const styles = StyleSheet.create({
         // position: "absolute",
         top: 0, 
         left: 0,
- },
+    },
 
     searchBar: {
       backgroundColor: palette.lavenderBlush04,
@@ -131,6 +142,7 @@ const styles = StyleSheet.create({
       borderRadius: 35,
       flexDirection: "row",
       paddingLeft: size.M,
+      maxWidth: 600
     },
 
     input: {
@@ -146,35 +158,11 @@ const styles = StyleSheet.create({
       fontSize: size.M,
       lineHeight: lineheight.M,
       color: palette.lavenderBlush,
+      marginLeft: 10
     },
 
     text: {
       color: palette.lavenderBlush
-    },
-
-    movieImage: {
-      height: 150,
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: palette.darkPurple,
-      marginBottom: 15
-    },
-
-    movieText: {
-      color: palette.lavenderBlush,
-      fontSize: size.S,
-      position: "absolute",
-      top: 15,
-      left: 15,
-    },
-
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.2)", 
-      width: "100%", 
-      height: 150,
-      position: "absolute",
-      top: 0, 
-      left: 0
     }
 });
   
