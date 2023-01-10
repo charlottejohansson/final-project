@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     },
 
     movieImage: {
-      width: 'stretch', 
-      height: '150pt',
+      width: "stretch", 
+      height: "150pt",
       borderRadius: "10pt",
       borderWidth: "1pt",
       borderColor: palette.darkPurple,

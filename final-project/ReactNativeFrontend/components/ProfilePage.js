@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, Provider } from "react-redux";
 import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
 import { useNavigate, Link } from "react-router-native";
@@ -8,7 +8,9 @@ import { Colors, Typography, Containers } from '../styles'
 import { PrimaryBtn, SecondaryBtn } from "../styles/buttons";
 import user from '../reducers/user';
 
+
 const ProfilePage = () => {
+
     const profilesItems = useSelector((store) => store.profiles.items);
     const dispatch = useDispatch();
     const accessToken = useSelector((store) => store.user.accessToken);
@@ -50,7 +52,9 @@ const ProfilePage = () => {
                 onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                 type="submit"
             />
+
         </View>
+
     );
 }
 
