@@ -77,9 +77,9 @@ const Login = () => {
                     <InputField 
                         placeholder="Password" 
                         ref={passwordInputRef}
-                        value={password} 
                         blurOnSubmit={false}
                         secureTextEntry={true}
+                        textContentType={password}
                         onChangeText={setPassword}
                         returnKeyType="next"
                     />
