@@ -1,6 +1,5 @@
-const BASE_URL = "http://localhost:8080"
+const BASE_URL = "https://final-project-t3aeo2jk2a-lz.a.run.app/"
 
-  // 'https://project-auth-3adyn7z7ja-uc.a.run.app'
 
   export const API_URL = (slug) => `${BASE_URL}/${slug}`
 
