@@ -1,6 +1,6 @@
 
 import { StyleSheet, View, Image, Text } from "react-native"
-import { Typography, Containers, Spacing, Colors } from '../styles'
+import { Typography, Containers, Spacing, Colors } from '.'
 import { LinearGradient } from 'expo-linear-gradient'
 
 export const MovieCard = ({ source, title }) => (

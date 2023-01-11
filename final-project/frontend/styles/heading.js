@@ -2,7 +2,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { Link } from 'react-router-native';
 import { palette } from "./colors";
 import { size, lineheight } from "./typography"
-import { spacing } from "../styles/spacing";
+import { spacing } from "./spacing";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 export const Heading = () => (
