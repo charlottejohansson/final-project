@@ -8,7 +8,8 @@ export const MovieCard = ({ source, title }) => (
         flex: 1,
         width: 150,
         marginBottom: 20,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        flexGrow: 1
     }}>
         <Image
             style={styles.Image}
@@ -36,6 +37,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 15,
         left: 15,
+        flex: 1,
+        width: 130
     },
   
     overlay: {

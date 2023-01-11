@@ -26,15 +26,15 @@ const MovieDetails = () => {
 
   return (
     <View style={styles.outerContainer}>
-  
         <Image
           style={{width: '100%', height: '100%', position: "absolute"}}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
-         <LinearGradient
-          colors={['rgba(0,0,0,0.7)','transparent', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,1)']}
-        style={styles.overlay}/>
+        <View style={styles.overlay}/>
       <Heading/>
       <View style={styles.innerContainer}>
+        <Image
+          style={{width: 240, height: 350, borderRadius: 10, marginBottom: 15}}
+          source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
         <View>
           <Text style={styles.h2}>{movieDetails.title}</Text>
           <Text style={styles.h3}>Rating: {Math.round(movieDetails.vote_average * 10) / 10}</Text>
@@ -62,9 +62,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
     justifyContent: "flex-end"
+
   },
 
   overlay: {
+    backgroundColor: 'rgba(0,0,0,0.8)',
     width: "100%", 
     height: "100%",
     position: "absolute",
@@ -74,16 +76,21 @@ const styles = StyleSheet.create({
 
   h2: {
     ...Typography.h2,
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    width: 350,
+    marginBottom: 10
   },
 
   h3: {
     ...Typography.h3,
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    marginBottom: 10
   },
 
   text: {
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    width: 350,
+    marginBottom: 10
   }
 
 });

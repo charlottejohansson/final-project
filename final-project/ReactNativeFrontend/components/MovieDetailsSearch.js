@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-native';
 import { Typography, Containers, Spacing, Colors} from '../styles'
-import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import MovieDetails from './MovieDetails';
 import { Link } from 'react-router-native';
 import { palette } from "../styles/colors";
@@ -62,21 +62,22 @@ const MovieDetailsSearch = () => {
         <Image
             style={{width: '100%', height: '100%', position: "absolute"}}
             source= {{uri: `${movieDetails.backdrop}` }}/>
-        <LinearGradient
-          colors={['rgba(0,0,0,0.7)','transparent', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,1)']}
-        style={styles.overlay}/>
+          <View style={styles.overlay}/>
         <Heading/>
-        <View style={styles.innerContainer}>
+        <ScrollView style={styles.innerContainer}>
+        <Image
+          style={{width: 240, height: 350, borderRadius: 10, marginBottom: 15}}
+            source= {{uri: `${movieDetails.backdrop}` }}/>
             <Text style={styles.h2}>{movieDetails.original_title}</Text>
             <Text style={styles.text}>{movieDetails.plot_overview}</Text>
         <View style={styles.tagContainer}>
             {movieSource.map(movie => (
-                <View key={movie.source_id} style={styles.tags}>
+              <View key={movie.source_id} style={styles.tags}>
                 <Text style = {{color: "white"}} >{movie.name}</Text>
-                </View> 
+              </View> 
             ))}
         </View> 
-      </View>
+      </ScrollView>
 
       <View>
           <Button title="Go back" onPress={goBack}></Button>
@@ -94,16 +95,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     marginTop: 20,
+    width: 350,
   },
 
   tags:{
-    backgroundColor: palette.xiketic,
+    backgroundColor:  palette.darkPurple,
     width: "auto",
     padding: 5,
     borderRadius: 5,
     borderWidth: 1,
     borderColor: palette.darkPurple,
-    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 10,
   },
 
@@ -115,9 +117,7 @@ const styles = StyleSheet.create({
 
   innerContainer: {
     height: "80%",
-    alignItems: 'center',
     marginHorizontal: 20,
-    justifyContent: "flex-end"
   },
 
   headerContainer: {
@@ -127,19 +127,25 @@ const styles = StyleSheet.create({
 
   h2: {
     ...Typography.h2,
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    width: 350,
+    marginBottom: 10
   },
 
   h3: {
     ...Typography.h3,
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    width: 350,
+    marginBottom: 10
   },
 
   text: {
-    color: palette.lavenderBlush
+    color: palette.lavenderBlush,
+    width: 350,
+    marginBottom: 10
   },
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.3)", 
+    backgroundColor: "rgba(0, 0, 0, 0.8)", 
     width: "100%", 
     height: "100%",
     position: "absolute",
