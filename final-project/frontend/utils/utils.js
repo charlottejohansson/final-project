@@ -1,8 +1,6 @@
 const BASE_URL = "https://final-project-t3aeo2jk2a-lz.a.run.app/"
 
-
-  export const API_URL = (slug) => `${BASE_URL}/${slug}`
-
+export const API_URL = (slug) => `${BASE_URL}/${slug}`
 
   // Most resently added movies
 export const POPULARMOVIE_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=ef036d5d52e9f5b31fbadf6ef00b48d2&language=en-US&page=1';
