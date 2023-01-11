@@ -7,6 +7,8 @@ import { Link } from 'react-router-native';
 import { palette } from "../styles/colors";
 import { spacing } from "../styles/spacing";
 import { size, lineheight } from '../styles/typography'
+import { LinearGradient } from 'expo-linear-gradient'
+import { Heading } from '../styles/heading';
 
 const MovieDetailsSearch = () => {
 
@@ -60,17 +62,19 @@ const MovieDetailsSearch = () => {
         <Image
             style={{width: '100%', height: '100%', position: "absolute"}}
             source= {{uri: `${movieDetails.backdrop}` }}/>
-
-      <View style={styles.overlay}/>
-      <View style={styles.innerContainer}>
-        <Text style={styles.h2}>{movieDetails.original_title}</Text>
-        <Text style={styles.text}>{movieDetails.plot_overview}</Text>
-      <View style={styles.tagContainer}>
-        {movieSource.map(movie => (
-          <View style={styles.tags}>
-           <Text key={movie.source_id} style = {{color: "white"}} >{movie.name}</Text>
-           </View> 
-          ))}
+        <LinearGradient
+          colors={['rgba(0,0,0,0.7)','transparent', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,1)']}
+        style={styles.overlay}/>
+        <Heading/>
+        <View style={styles.innerContainer}>
+            <Text style={styles.h2}>{movieDetails.original_title}</Text>
+            <Text style={styles.text}>{movieDetails.plot_overview}</Text>
+        <View style={styles.tagContainer}>
+            {movieSource.map(movie => (
+                <View key={movie.source_id} style={styles.tags}>
+                <Text style = {{color: "white"}} >{movie.name}</Text>
+                </View> 
+            ))}
         </View> 
       </View>
 

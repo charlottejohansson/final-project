@@ -5,6 +5,7 @@ import { MOVIEDETAILS_URL } from '../utils/utils';
 import { Colors, Typography, Containers } from '../styles'
 import { Heading } from '../styles/heading';
 import { palette } from '../styles/colors';
+import { LinearGradient } from 'expo-linear-gradient'
 
 const MovieDetails = () => {
   const [ movieDetails, setMovieDetails ] = useState({});
@@ -25,15 +26,18 @@ const MovieDetails = () => {
 
   return (
     <View style={styles.outerContainer}>
+  
         <Image
           style={{width: '100%', height: '100%', position: "absolute"}}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
-        <View style={styles.overlay}/>
+         <LinearGradient
+          colors={['rgba(0,0,0,0.7)','transparent', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,1)']}
+        style={styles.overlay}/>
       <Heading/>
       <View style={styles.innerContainer}>
         <View>
           <Text style={styles.h2}>{movieDetails.title}</Text>
-          <Text style={styles.h3}>{Math.round(movieDetails.vote_average * 10) / 10}</Text>
+          <Text style={styles.h3}>Rating: {Math.round(movieDetails.vote_average * 10) / 10}</Text>
           <Text style={styles.text}>{movieDetails.overview}</Text>
         </View>
       </View>
@@ -61,7 +65,6 @@ const styles = StyleSheet.create({
   },
 
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.3)", 
     width: "100%", 
     height: "100%",
     position: "absolute",

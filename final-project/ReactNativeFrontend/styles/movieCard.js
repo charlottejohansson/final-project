@@ -1,6 +1,7 @@
 
 import { StyleSheet, View, Image, Text } from "react-native"
 import { Typography, Containers, Spacing, Colors } from '../styles'
+import { LinearGradient } from 'expo-linear-gradient'
 
 export const MovieCard = ({ source, title }) => (
     <View style={{
@@ -12,7 +13,9 @@ export const MovieCard = ({ source, title }) => (
         <Image
             style={styles.Image}
             source={source}/>
-        <View style={styles.overlay}/>
+        <LinearGradient
+            colors={['rgba(0,0,0,0.8) 20%', 'transparent']}
+           style={styles.overlay}/>
         <Text style={styles.text}>{title}</Text>
     </View>
 )
@@ -36,7 +39,6 @@ const styles = StyleSheet.create({
     },
   
     overlay: {
-        backgroundColor: "rgba(0, 0, 0, 0.2)", 
         width: "100%", 
         height: 200,
         position: "absolute",

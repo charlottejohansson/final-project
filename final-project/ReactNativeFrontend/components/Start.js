@@ -2,13 +2,14 @@ import React, {useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
 import { Link } from 'react-router-native';
 import { StyleSheet, Text, View, TextInput, Image, ScrollView } from "react-native";
-import { Typography, Containers, Spacing } from '../styles'
+import { Typography, Containers, Spacing, Colors } from '../styles'
 import { PrimaryIconBtn } from "../styles/buttons";
 import { Heading } from "../styles/heading";
 import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
 import { MovieCard } from "../styles/movieCard";
+
 
 const Start = ({movies}) => {
 
@@ -67,15 +68,22 @@ const Start = ({movies}) => {
       
       
       {/* Search results */}
+    <ScrollView>
       {searchResults && (
         <View>
           {searchResults.map((item) => {
             return (
-              <View style = {styles.searchPage}>    
+              <View 
+                key={item.id} 
+                style = {styles.searchPage}>    
                 <Link
-                  key={item.id}
                   to={`/MovieDetailsSearch/${item.id}`}>
+                 <View style={{flexDirection: "row", alignItems: "center", paddingHorizontal: 20, flexGrow: 1}}>   
+                  <Image 
+                    style={{width: 50, height: 70, borderRadius: 7}}
+                    source= {{uri: `${item.image_url}` }} />
                   <Text style={styles.text}>{item.name}</Text>
+                  </View>
                 </Link>
               </View>
             );
@@ -85,7 +93,7 @@ const Start = ({movies}) => {
 
 
       {/* New releases */}
-      <ScrollView style={{
+      <View style={{
         paddingVertical: spacing.S, 
         width: "100%"}}>
         <Text style={styles.h2}>New Releases</Text>
@@ -101,8 +109,9 @@ const Start = ({movies}) => {
             </Link>
           ))}
         </View>
-        </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
+  </View>
   );
 }
 
@@ -127,12 +136,9 @@ const styles = StyleSheet.create({
     },
     
     searchPage: {
-        color: "rgba(0, 0, 0, 0.3)", 
-        width: "100%", 
-        height: "100%",
-        // position: "absolute",
-        top: 0, 
-        left: 0,
+      paddingVertical: 10,
+      borderBottomColor: palette.darkPurple,
+      borderBottomWidth: 1
     },
 
     searchBar: {
@@ -162,7 +168,10 @@ const styles = StyleSheet.create({
     },
 
     text: {
-      color: palette.lavenderBlush
+      fontSize: size.S,
+      color: palette.lavenderBlush,
+      paddingLeft: 10,
+      flex: 1
     }
 });
   
