@@ -9,6 +9,7 @@ import { palette } from "../styles/colors";
 import { size, lineheight } from "../styles/typography";
 import { spacing } from "../styles/spacing";
 import { MovieCard } from "../styles/movieCard";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 
 const Start = ({movies}) => {
@@ -44,25 +45,43 @@ const Start = ({movies}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Heading/>
-        <View style={styles.searchBar}>
-          <TextInput
-            style={styles.input}
-            placeholder="Search movies"
-            placeholderTextColor="rgba(252,238,247,0.5)" 
-            returnKeyType="search"
-            keyboardType="default"
-            type="text"
-            onChangeText={(text) => {
-              setTitle(text);
-              setSearchResults(null);
-          }}/>
-          <PrimaryIconBtn
-            name={"search"}
-            size={24}
-            onPress={(onFormSubmit)}
-            type="submit"/>
+        <View style={styles.heading}>
+          <Link to="/">
+            <FontAwesome5 
+                style={{opacity: 0}} 
+                name="chevron-left" 
+                size={24} 
+                color={palette.lavenderBlush} />
+          </Link>
+          <Link to="/">
+            <Text style={styles.h2}>Stream.guide</Text>
+          </Link>
+          <Link to='/login'>
+            <FontAwesome5 
+              style={styles.icon} 
+              name="user-circle" 
+              size={24} 
+              color={palette.lavenderBlush} />
+          </Link>
         </View>
+          <View style={styles.searchBar}>
+            <TextInput
+              style={styles.input}
+              placeholder="Search movies"
+              placeholderTextColor="rgba(252,238,247,0.5)" 
+              returnKeyType="search"
+              keyboardType="default"
+              type="text"
+              onChangeText={(text) => {
+                setTitle(text);
+                setSearchResults(null);
+            }}/>
+            <PrimaryIconBtn
+              name={"search"}
+              size={24}
+              onPress={(onFormSubmit)}
+              type="submit"/>
+          </View>
       </View>
       {/* Searchbar */}
       
@@ -119,12 +138,25 @@ const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
     },
+    
+    heading: {
+      paddingBottom: 20,
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      paddingTop: spacing.XXL,
+      paddingBottom: spacing.M,
+    },
+
+    icon: {
+      paddingVertical: 3,
+    },
 
     headerContainer: {
       paddingBottom: 20,
       width: "100%",
-      paddingHorizontal: 20,
-      alignItems: "center"
+      alignContent: "center",
+      paddingHorizontal: 20
     },
 
     movieCardContainer: {
@@ -148,7 +180,7 @@ const styles = StyleSheet.create({
       borderRadius: 35,
       flexDirection: "row",
       paddingLeft: size.M,
-      maxWidth: 600
+      width: "100%",
     },
 
     input: {
@@ -164,7 +196,7 @@ const styles = StyleSheet.create({
       fontSize: size.M,
       lineHeight: lineheight.M,
       color: palette.lavenderBlush,
-      marginLeft: 10
+      marginLeft: 30,
     },
 
     text: {

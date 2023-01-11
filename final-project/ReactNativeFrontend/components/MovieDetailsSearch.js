@@ -52,9 +52,9 @@ const MovieDetailsSearch = () => {
       .catch(err => console.error(err));
   }, [movie_id])
 
-      const goBack = () => {
-        navigate(-1);
-      };
+      // const goBack = () => {
+      //   navigate(-1);
+      // };
 
 
     return (
@@ -79,9 +79,9 @@ const MovieDetailsSearch = () => {
         </View> 
       </ScrollView>
 
-      <View>
+      {/* <View>
           <Button title="Go back" onPress={goBack}></Button>
-        </View>
+        </View> */}
       </View>
       )
     } 

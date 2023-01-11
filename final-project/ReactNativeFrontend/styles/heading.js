@@ -7,6 +7,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 export const Heading = () => (
     <View style={styles.header}>
+     <Link to="/">
+        <FontAwesome5 
+            style={styles.icon} 
+            name="chevron-left" 
+            size={20} 
+            color={palette.lavenderBlush} />
+     </Link>
         <Link to="/">
             <Text style={styles.text}>Stream.guide</Text>
         </Link>
@@ -28,16 +35,15 @@ const styles = StyleSheet.create({
     },
   
     icon: {
-        position: "absolute",
-        right: -93,
         paddingVertical: 3,
     },
 
     header: {
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         paddingTop: spacing.XXL,
         paddingBottom: spacing.M,
         width: "100%",
+        paddingHorizontal: 20
     },
 })

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-native';
-import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import { MOVIEDETAILS_URL } from '../utils/utils';
 import { Colors, Typography, Containers } from '../styles'
 import { Heading } from '../styles/heading';
@@ -20,9 +20,9 @@ const MovieDetails = () => {
       });
   }, []);
 
-  const goBack = () => {
-    navigate(-1);
-  };
+  // const goBack = () => {
+  //   navigate(-1);
+  // };
 
   return (
     <View style={styles.outerContainer}>
@@ -31,7 +31,7 @@ const MovieDetails = () => {
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
         <View style={styles.overlay}/>
       <Heading/>
-      <View style={styles.innerContainer}>
+      <ScrollView style={styles.innerContainer}>
         <Image
           style={{width: 240, height: 350, borderRadius: 10, marginBottom: 15}}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
@@ -40,12 +40,12 @@ const MovieDetails = () => {
           <Text style={styles.h3}>Rating: {Math.round(movieDetails.vote_average * 10) / 10}</Text>
           <Text style={styles.text}>{movieDetails.overview}</Text>
         </View>
-      </View>
-      <View>
+      </ScrollView>
+      {/* <View>
         <Button title="Go back" onPress={goBack}>
         <Text>loading</Text>
         </Button>
-      </View>
+      </View> */}
   </View>
   );
 };
@@ -59,10 +59,7 @@ const styles = StyleSheet.create({
 
   innerContainer: {
     height: "80%",
-    alignItems: 'center',
     marginHorizontal: 20,
-    justifyContent: "flex-end"
-
   },
 
   overlay: {
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
   h2: {
     ...Typography.h2,
     color: palette.lavenderBlush,
-    width: 350,
+    width: 360,
     marginBottom: 10
   },
 
@@ -89,7 +86,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: palette.lavenderBlush,
-    width: 350,
+    width: 360,
     marginBottom: 10
   }
 
