@@ -25,8 +25,6 @@ const Register = () => {
         }
     }, [accessToken])
 
-    const passwordInputRef = createRef();
-
     const onFormSubmit =(event) => {
         event.preventDefault();
         const options = {
@@ -76,7 +74,6 @@ const Register = () => {
                     />
                     <InputField 
                         placeholder="Enter Password" 
-                        ref={passwordInputRef}
                         blurOnSubmit={false}
                         secureTextEntry={true}
                         onChangeText={setPassword}

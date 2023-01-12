@@ -27,9 +27,6 @@ const Start = ({movies}) => {
       }
     };
 
-  var movieSearch;
-
-  // Call the API
   fetch(`https://watchmode.p.rapidapi.com/autocomplete-search/?search_value=${title}&search_type=2`, options)
     .then(function (response){
           return response.json();
@@ -39,7 +36,6 @@ const Start = ({movies}) => {
   }).catch(function (error) {
       console.warn(error);
   });
-
    }
 
   return (

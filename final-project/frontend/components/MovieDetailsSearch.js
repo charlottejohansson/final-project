@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-native';
+import { useParams } from 'react-router-native';
 import { Typography, Containers, Spacing, Colors} from '../styles'
 import { StyleSheet, Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import MovieDetails from './MovieDetails';
@@ -15,7 +15,6 @@ const MovieDetailsSearch = () => {
      const [ movieDetails, setMovieDetails ] = useState([]);
      const [ movieSource, setMovieSource ] = useState([]);
      const { movie_id } = useParams();
-     const navigate = useNavigate();
      
 
      const options = {
@@ -52,11 +51,6 @@ const MovieDetailsSearch = () => {
       .catch(err => console.error(err));
   }, [movie_id])
 
-      // const goBack = () => {
-      //   navigate(-1);
-      // };
-
-
     return (
       <View style={styles.outerContainer}>
         <Image
@@ -78,10 +72,6 @@ const MovieDetailsSearch = () => {
             ))}
         </View> 
       </ScrollView>
-
-      {/* <View>
-          <Button title="Go back" onPress={goBack}></Button>
-        </View> */}
       </View>
       )
     } 

@@ -25,8 +25,6 @@ const Login = () => {
         }
     }, [accessToken])
 
-    const passwordInputRef = createRef(); 
-
     const onFormSubmit =(event) => {
         event.preventDefault();
         const options = {
@@ -76,7 +74,6 @@ const Login = () => {
                     />
                     <InputField 
                         placeholder="Password" 
-                        ref={passwordInputRef}
                         blurOnSubmit={false}
                         secureTextEntry={true}
                         textContentType={password}
