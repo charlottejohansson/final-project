@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-native';
-import { StyleSheet, Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import { MOVIEDETAILS_URL } from '../utils/utils';
-import { Colors, Typography, Containers } from '../styles'
+
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { Colors, Typography, Spacing, Containers } from '../styles'
 import { Heading } from '../styles/heading';
-import { palette } from '../styles/colors';
-import { LinearGradient } from 'expo-linear-gradient'
 
 const MovieDetails = () => {
   const [ movieDetails, setMovieDetails ] = useState({});
@@ -20,20 +19,16 @@ const MovieDetails = () => {
       });
   }, []);
 
-  // const goBack = () => {
-  //   navigate(-1);
-  // };
-
   return (
-    <View style={styles.outerContainer}>
+    <View style={{...Containers.outerContainer}}>
         <Image
-          style={{width: '100%', height: '100%', position: "absolute"}}
+          style={styles.background}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
         <View style={styles.overlay}/>
       <Heading/>
       <ScrollView style={styles.innerContainer}>
         <Image
-          style={{width: 240, height: 350, borderRadius: 10, marginBottom: 15}}
+          style={styles.poster}
           source={{ uri: `https://image.tmdb.org/t/p/w342${movieDetails.poster_path}` }}/>
         <View>
           <Text style={styles.h2}>{movieDetails.title}</Text>
@@ -41,25 +36,15 @@ const MovieDetails = () => {
           <Text style={styles.text}>{movieDetails.overview}</Text>
         </View>
       </ScrollView>
-      {/* <View>
-        <Button title="Go back" onPress={goBack}>
-        <Text>loading</Text>
-        </Button>
-      </View> */}
   </View>
   );
 };
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: palette.xiketic,
-    alignItems: 'center',
-  },
-
-  innerContainer: {
-    height: "80%",
-    marginHorizontal: 20,
+  background: {
+    width: '100%', 
+    height: '100%', 
+    position: "absolute"
   },
 
   overlay: {
@@ -71,25 +56,35 @@ const styles = StyleSheet.create({
     left: 0
   },
 
+  innerContainer: {
+    marginHorizontal: Spacing.spacing.S,
+    height: "80%",
+    width: 340
+  },
+
+  poster: {
+    width: 240, 
+    height: 350, 
+    borderRadius: 10, 
+    marginBottom: 15
+  },
+
   h2: {
     ...Typography.h2,
-    color: palette.lavenderBlush,
-    width: 360,
-    marginBottom: 10
+    color: Colors.palette.lavenderBlush,
+    marginBottom: Spacing.spacing.XS
   },
 
   h3: {
     ...Typography.h3,
-    color: palette.lavenderBlush,
-    marginBottom: 10
+    color: Colors.palette.lavenderBlush,
+    marginBottom: Spacing.spacing.XS
   },
 
   text: {
-    color: palette.lavenderBlush,
-    width: 360,
-    marginBottom: 10
+    color: Colors.palette.lavenderBlush,
+    marginBottom: Spacing.spacing.XS
   }
-
 });
 
 export default MovieDetails;

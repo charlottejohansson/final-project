@@ -1,15 +1,14 @@
 import React, {useEffect, useState, createRef} from "react";
+import user from '../reducers/user';
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
-import user from '../reducers/user';
 
 import { StyleSheet, Text, View } from "react-native";
-import { Typography, Containers, Colors } from '../styles'
+import { Colors, Containers, Typography, Spacing } from '../styles'
 import { PrimaryBtn } from "../styles/buttons";
 import { InputField } from "../styles/inputfield";
 import { Heading } from "../styles/heading";
-import { spacing } from "../styles/spacing";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -61,7 +60,7 @@ const Login = () => {
         <View style={styles.container}>
             <Heading/> 
             <View style={styles.container} onPress={(onFormSubmit)}>
-                <View style={styles.innerWrapper}>
+                <View style={styles.innerContainer}>
                     <Text style={styles.h2}>Login</Text>
                     <InputField
                         placeholder="Username" 
@@ -85,11 +84,13 @@ const Login = () => {
                         onPress={(onFormSubmit)}
                         type="submit"
                     />
-                    <Text style={styles.text}>Don't have an account?
-                        <Link to='/register'>
-                            <Text style={styles.linkText}>Sign up here</Text>
-                        </Link>
-                    </Text>
+                    <View style={{paddingTop: Spacing.spacing.S}}>
+                        <Text style={styles.text}>Don't have an account?
+                            <Link to='/register'>
+                                <Text style={styles.linkText}>Sign up here</Text>
+                            </Link>
+                        </Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -102,10 +103,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
+    innerContainer: {
+        width: 300,
+        alignContent: "flex-start"
+    },
+
     h2: {
         ...Typography.h2,
         color: Colors.palette.lavenderBlush,
-        paddingBottom: spacing.XS,
+        paddingBottom: Spacing.spacing.XS,
     },
   
     text: {
@@ -117,13 +123,8 @@ const styles = StyleSheet.create({
     linkText: {
         ...Typography.body2,
         color: Colors.palette.frostbite,
-        paddingTop: 2,
+        paddingTop: 3,
         paddingLeft: 4,
-    },
-
-    innerWrapper: {
-        width: "100%",
-        alignContent: "flex-start"
     }
 });
 

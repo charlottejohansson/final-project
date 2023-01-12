@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
+import user from '../reducers/user';
 import { useDispatch, useSelector, Provider } from "react-redux";
 import profiles from "../reducers/profiles.js";
 import { API_URL } from '../utils/utils'
 import { useNavigate } from "react-router-native";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { Colors, Typography, Containers } from '../styles'
-import { spacing } from "../styles/spacing.js";
+
+import { StyleSheet, Text, View } from "react-native";
+import { Colors, Containers, Typography, Spacing } from '../styles'
 import { Heading } from '../styles/heading'
 import { PrimaryBtn} from "../styles/buttons";
 import { FontAwesome5 } from '@expo/vector-icons'; 
-import user from '../reducers/user';
+
 
 
 const ProfilePage = () => {
-
     const profilesItems = useSelector((store) => store.profiles.items);
     const dispatch = useDispatch();
     const accessToken = useSelector((store) => store.user.accessToken);
@@ -54,7 +54,7 @@ const ProfilePage = () => {
                 <Text style={styles.h2}>Profile functions</Text>
                 <Text style={styles.h2}>coming soon</Text>
                 <FontAwesome5 
-                    style={{marginTop: 30}}
+                    style={{marginTop: Spacing.spacing.L}}
                     name="gift" 
                     size={100} 
                     color={Colors.palette.lavenderBlush} /> 
@@ -73,24 +73,24 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: 'center',
-        paddingLeft: spacing.M,
-        paddingRight: spacing.M,
+        paddingLeft: Spacing.spacing.M,
+        paddingRight: Spacing.spacing.M,
         opacity: "40%",
-        height: "70%",
+        height: "70%"
     },
 
     h2: {
         ...Typography.h2,
-        color: Colors.palette.lavenderBlush,
+        color: Colors.palette.lavenderBlush
     },
   
     text: {
       ...Typography.body2,
-      color: Colors.palette.lavenderBlush,
+      color: Colors.palette.lavenderBlush
     },
   
     textInput: {
-      color: Colors.palette.lavenderBlush,
+      color: Colors.palette.lavenderBlush
     }
 });
 

@@ -1,16 +1,10 @@
-import React, {useState, useEffect} from "react";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-native';
+import React, {useState } from "react";
 import { Link } from 'react-router-native';
 import { StyleSheet, Text, View, TextInput, Image, ScrollView } from "react-native";
 import { Typography, Containers, Spacing, Colors } from '../styles'
 import { PrimaryIconBtn } from "../styles/buttons";
-import { Heading } from "../styles/heading";
-import { palette } from "../styles/colors";
-import { size, lineheight } from "../styles/typography";
-import { spacing } from "../styles/spacing";
 import { MovieCard } from "../styles/movieCard";
 import { FontAwesome5 } from '@expo/vector-icons'; 
-
 
 const Start = ({movies}) => {
 
@@ -36,10 +30,11 @@ const Start = ({movies}) => {
   }).catch(function (error) {
       console.warn(error);
   });
-   }
+  }
 
   return (
-    <View style={styles.container}>
+    <View style={{...Containers.outerContainer}}>
+      {/* Header */}
       <View style={styles.headerContainer}>
         <View style={styles.heading}>
           <Link to="/">
@@ -47,7 +42,7 @@ const Start = ({movies}) => {
                 style={{opacity: 0}} 
                 name="chevron-left" 
                 size={24} 
-                color={palette.lavenderBlush} />
+                color={Colors.palette.lavenderBlush} />
           </Link>
           <Link to="/">
             <Text style={styles.h2}>Stream.guide</Text>
@@ -57,9 +52,10 @@ const Start = ({movies}) => {
               style={styles.icon} 
               name="user-circle" 
               size={24} 
-              color={palette.lavenderBlush} />
+              color={Colors.palette.lavenderBlush} />
           </Link>
         </View>
+          {/* Search field */}
           <View style={styles.searchBar}>
             <TextInput
               style={styles.input}
@@ -79,128 +75,122 @@ const Start = ({movies}) => {
               type="submit"/>
           </View>
       </View>
-      {/* Searchbar */}
-      
       
       {/* Search results */}
-    <ScrollView>
-      {searchResults && (
-        <View>
-          {searchResults.map((item) => {
-            return (
-              <View 
-                key={item.id} 
-                style = {styles.searchPage}>    
-                <Link
-                  to={`/MovieDetailsSearch/${item.id}`}>
-                 <View style={{flexDirection: "row", alignItems: "center", paddingHorizontal: 20, flexGrow: 1}}>   
-                  <Image 
-                    style={{width: 50, height: 70, borderRadius: 7}}
-                    source= {{uri: `${item.image_url}` }} />
-                  <Text style={styles.text}>{item.name}</Text>
-                  </View>
-                </Link>
-              </View>
-            );
-          })}
-        </View>
-      )}
+      <ScrollView>
+        {searchResults && (
+          <View>
+            {searchResults.map((item) => {
+              return (
+                <View 
+                  key={item.id} 
+                  style = {styles.searchPage}>    
+                  <Link
+                    to={`/MovieDetailsSearch/${item.id}`}>
+                    <View style={{flexDirection: "row", alignItems: "center", paddingHorizontal: 20, flexGrow: 1}}>   
+                      <Image 
+                        style={{width: 50, height: 70, borderRadius: 7}}
+                        source= {{uri: `${item.image_url}` }} />
+                      <Text style={styles.text}>{item.name}</Text>
+                    </View>
+                  </Link>
+                </View>
+              );
+            })}
+          </View>
+        )}
 
 
-      {/* New releases */}
-      <View style={{
-        paddingVertical: spacing.S, 
-        width: "100%"}}>
-        <Text style={styles.h2}>New Releases</Text>
-        <View style={styles.movieCardContainer}>
-          {movies.map((movie) => (
-            <Link
+        {/* New releases */}
+        <View style={{
+          paddingVertical: Spacing.spacing.S, 
+          width: "100%"}}>
+          <Text style={styles.h2}>New Releases</Text>
+          <View style={styles.movieCardContainer}>
+            {movies.map((movie) => (
+              <Link
                 key={movie.id}
                 to={`/MovieDetails/${movie.id}`}>
-              <MovieCard
-                title={movie.title}
-                source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}
-              />
-            </Link>
-          ))}
+                <MovieCard
+                  title={movie.title}
+                  source={{ uri:`https://image.tmdb.org/t/p/w342${movie.poster_path}`}}
+                />
+              </Link>
+            ))}
+          </View>
         </View>
-      </View>
-    </ScrollView>
-  </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      ...Containers.outerContainer,
-    },
+  heading: {
+    paddingBottom: Spacing.spacing.S,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: Spacing.spacing.XXL,
+    paddingBottom: Spacing.spacing.M,
+  },
+
+  icon: {
+    paddingVertical: 3,
+  },
+
+  headerContainer: {
+    paddingBottom: Spacing.spacing.S,
+    width: "100%",
+    alignContent: "center",
+    paddingHorizontal: Spacing.spacing.S
+  },
+
+  movieCardContainer: {
+    justifyContent: "center",
+    paddingVertical: Spacing.spacing.XS, 
+    width: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
     
-    heading: {
-      paddingBottom: 20,
-      width: "100%",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      paddingTop: spacing.XXL,
-      paddingBottom: spacing.M,
-    },
+  searchPage: {
+    paddingVertical: Spacing.spacing.XS,
+    borderBottomColor: Colors.palette.darkPurple,
+    borderBottomWidth: 1
+  },
 
-    icon: {
-      paddingVertical: 3,
-    },
+  searchBar: {
+    backgroundColor: Colors.palette.lavenderBlush04,
+    borderColor: Colors.palette.darkPurple,
+    borderWidth: 1,
+    borderRadius: 35,
+    flexDirection: "row",
+    paddingLeft: Spacing.spacing.M,
+    width: "100%"
+  },
 
-    headerContainer: {
-      paddingBottom: 20,
-      width: "100%",
-      alignContent: "center",
-      paddingHorizontal: 20
-    },
+  input: {
+    fontSize: Typography.size.S,
+    lineHeight: Typography.lineheight.S,
+    paddingTop: Spacing.spacing.S,
+    paddingBottom: Spacing.spacing.S,
+    color: Colors.palette.lavenderBlush,
+    flex: 1
+  },
 
-    movieCardContainer: {
-      justifyContent: "center",
-      paddingVertical: spacing.XS, 
-      width: "100%",
-      flexDirection: "row",
-      flexWrap: "wrap",
-    },
-    
-    searchPage: {
-      paddingVertical: 10,
-      borderBottomColor: palette.darkPurple,
-      borderBottomWidth: 1
-    },
+  h2: {
+    fontSize: Typography.size.M,
+    lineHeight: Typography.lineheight.M,
+    color: Colors.palette.lavenderBlush,
+    marginLeft: Spacing.spacing.L
+  },
 
-    searchBar: {
-      backgroundColor: palette.lavenderBlush04,
-      borderColor: palette.darkPurple,
-      borderWidth: 1,
-      borderRadius: 35,
-      flexDirection: "row",
-      paddingLeft: size.M,
-      width: "100%",
-    },
-
-    input: {
-      fontSize: size.S,
-      lineHeight: lineheight.S,
-      paddingTop: spacing.S,
-      paddingBottom: spacing.S,
-      color: palette.lavenderBlush,
-      flex: 1,
-    },
-
-    h2: {
-      fontSize: size.M,
-      lineHeight: lineheight.M,
-      color: palette.lavenderBlush,
-      marginLeft: 30,
-    },
-
-    text: {
-      fontSize: size.S,
-      color: palette.lavenderBlush,
-      paddingLeft: 10,
-      flex: 1
-    }
+  text: {
+    fontSize: Typography.size.S,
+    color: Colors.palette.lavenderBlush,
+    paddingLeft: Spacing.spacing.XS,
+    flex: 1
+  }
 });
   
 export default Start;
