@@ -1,11 +1,9 @@
 import { StyleSheet, TextInput} from "react-native";
-import { palette } from "./colors";
-import { size, lineheight } from "./typography"
-import { spacing } from "./spacing";
+import { Typography, Colors, Spacing } from '.'
 
 export const InputField = ({ placeholder, onChangeText, secureTextEntry }) => (
     <TextInput
-        style={primary.input}
+        style={styles.input}
         onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
@@ -13,19 +11,19 @@ export const InputField = ({ placeholder, onChangeText, secureTextEntry }) => (
       />
 )
 
-const primary = StyleSheet.create({
+const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderColor: palette.darkPurple,
-        backgroundColor: palette.lavenderBlush04,
-        color: palette.lavenderBlush,
-        paddingTop: size.S,
-        paddingBottom: size.S,
-        paddingLeft: size.M,
-        paddingRight: size.S,
+        borderColor: Colors.palette.darkPurple,
+        backgroundColor: Colors.palette.lavenderBlush04,
+        color: Colors.palette.lavenderBlush,
+        paddingTop: Spacing.spacing.S,
+        paddingBottom: Spacing.spacing.S,
+        paddingLeft: Spacing.spacing.M,
+        paddingRight: Spacing.spacing.S,
         borderRadius: 40,
-        fontSize: size.M,
-        lineHeight: lineheight.M,
-        marginBottom: spacing.M
+        fontSize: Typography.size.M,
+        lineHeight: Typography.lineheight.M,
+        marginBottom: Spacing.spacing.M
     }
 })

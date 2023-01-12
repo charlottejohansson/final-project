@@ -1,8 +1,6 @@
 
 import { StyleSheet, Text, TouchableHighlight } from "react-native";
-import { palette } from "./colors";
-import { spacing } from "./spacing";
-import { size, lineheight } from './typography'
+import { Typography, Colors, Spacing } from '.'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 export const PrimaryBtn = ({ title, onPress }) => (
@@ -13,19 +11,19 @@ export const PrimaryBtn = ({ title, onPress }) => (
 
 const primary = StyleSheet.create({
   button: {
-    backgroundColor: palette.frostbite,
-    paddingTop: spacing.S,
-    paddingBottom: spacing.S,
-    paddingLeft: spacing.L,
-    paddingRight: spacing.L,
+    backgroundColor: Colors.palette.frostbite,
+    paddingTop: Spacing.spacing.S,
+    paddingBottom: Spacing.spacing.S,
+    paddingLeft: Spacing.spacing.L,
+    paddingRight: Spacing.spacing.L,
     borderRadius: 30,
     alignItems: "center",
   },
   
   text: {
-    fontSize: size.M,
-    lineHeight: lineheight.M,
-    color: palette.lavenderBlush,
+    fontSize: Typography.size.M,
+    lineHeight: Typography.lineheight.M,
+    color: Colors.palette.lavenderBlush,
   },
 })
 
@@ -38,18 +36,18 @@ export const SecondaryBtn = ({ title, onPress }) => (
 const secondary = StyleSheet.create({
   button: {
     borderWidth: '2px',
-    borderColor: palette.frostbite,
-    paddingTop: spacing.S,
-    paddingBottom: spacing.S,
-    paddingLeft: spacing.L,
-    paddingRight: spacing.L,
+    borderColor: Colors.palette.frostbite,
+    paddingTop: Spacing.spacing.S,
+    paddingBottom: Spacing.spacing.S,
+    paddingLeft: Spacing.spacing.L,
+    paddingRight: Spacing.spacing.L,
     borderRadius: 30,
   },
 
   text: {
-    fontSize: size.M,
-    lineHeight: lineheight.M,
-    color: palette.frostbite,
+    fontSize: Typography.size.M,
+    lineHeight: Typography.lineheight.M,
+    color: Colors.palette.frostbite,
   },
 })
 
@@ -61,8 +59,8 @@ export const PrimaryIconBtn = ({ name, size, onPress }) => (
 
 const primaryIcon = StyleSheet.create({
   button: {
-    backgroundColor: palette.frostbite,
-    padding: spacing.S,
+    backgroundColor: Colors.palette.frostbite,
+    padding: Spacing.spacing.S,
     borderRadius: 30,
   },
 })

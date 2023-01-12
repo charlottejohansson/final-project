@@ -1,14 +1,14 @@
 import React, {useEffect, useState, createRef} from "react";
-import { useDispatch, useSelector, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-native";
-import { API_URL } from '../utils/utils'
 import user from '../reducers/user';
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, Image } from "react-native";
-import { Colors, Typography, Containers } from '../styles'
+import { useDispatch, useSelector, batch } from "react-redux";
+import { useNavigate } from "react-router-native";
+import { API_URL } from '../utils/utils'
+
+import { StyleSheet, Text, View } from "react-native";
+import { Colors, Containers, Typography, Spacing } from '../styles'
 import { PrimaryBtn } from "../styles/buttons";
 import { InputField } from "../styles/inputfield";
 import { Heading } from "../styles/heading";
-import { spacing } from "../styles/spacing";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -59,14 +59,15 @@ const Register = () => {
     }
 
     return (
-        <View style={styles.container} onPress={(onFormSubmit)}>
+        <View 
+            style={styles.container} 
+            onPress={(onFormSubmit)}>
             <Heading/>
             <View style={styles.container} onPress={(onFormSubmit)}>
-                <View style={styles.innerWrapper}>
+                <View style={styles.innerContainer}>
                     <Text style={styles.h2}>Register</Text>
                     <InputField
-                        placeholder="Enter username" 
-                        style={styles.input}
+                        placeholder="Enter username"
                         onChangeText={setUsername}
                         value={username}
                         autoCapitalize="none"
@@ -95,11 +96,8 @@ const Register = () => {
                             <Text style={{ fontSize: '21px', color: 'white' }}>{error}</Text>
                         )}
                     </Text>
-                    
                 </View>
-            </View>
-                
-            
+            </View>  
         </View>
     )
 }
@@ -107,17 +105,19 @@ const Register = () => {
 const styles = StyleSheet.create({
     container: {
       ...Containers.outerContainer,
-      justifyContent: "center",
+      justifyContent: "center"
     },
 
-    innerWrapper: {
-        gap: spacing.M,
+    innerContainer: {
+        gap: Spacing.spacing.M,
         alignContent: "flex-start",
+        width: 300
     },
 
     h2: {
         ...Typography.h2,
         color: Colors.palette.lavenderBlush,
+        paddingBottom: Spacing.spacing.XS
     },
   
     text: {
@@ -125,10 +125,6 @@ const styles = StyleSheet.create({
       color: Colors.palette.lavenderBlush,
       textAlign: "center"
     },
-  
-    textInput: {
-      color: Colors.palette.lavenderBlush,
-    }
 });
 
 export default Register;
