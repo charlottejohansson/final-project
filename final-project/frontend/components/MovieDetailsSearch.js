@@ -14,7 +14,7 @@ const MovieDetailsSearch = () => {
      const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '9a7382db50msh6462aa86d1ccba6p1903c0jsn219a84a3cae4',
+        'X-RapidAPI-Key': '4609bbe44amshe3f86b78da14a2cp13f543jsnbad29ed23699',
         'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
       }
     };
