@@ -5,8 +5,8 @@ import { useNavigate, Link } from "react-router-native";
 import { API_URL } from '../utils/utils'
 
 import { StyleSheet, Text, View } from "react-native";
-import { Colors, Typography, Containers, Spacing } from "../styles";
-import { Button } from "../styles/button";
+import { Colors, Containers, Typography, Spacing } from '../styles'
+import { PrimaryBtn } from "../styles/button";
 import { InputField } from "../styles/inputfield";
 import { Heading } from "../styles/heading";
 
@@ -79,7 +79,7 @@ const Login = () => {
                         onChangeText={setPassword}
                         returnKeyType="next"
                     />
-                    <Button 
+                    <PrimaryBtn 
                         title="Login"
                         onPress={(onFormSubmit)}
                         type="submit"

@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Link } from "react-router-native";
-import { palette } from "../styles/colors";
+import { palette } from "../styles/atoms/colors";
 
 const NotFound = () => {
     return (

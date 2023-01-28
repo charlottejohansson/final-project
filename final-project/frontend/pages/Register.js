@@ -1,26 +1,27 @@
 import React, {useEffect, useState} from "react";
 import user from '../reducers/user';
 import { useDispatch, useSelector, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-native";
+import { useNavigate } from "react-router-native";
 import { API_URL } from '../utils/utils'
 
 import { StyleSheet, Text, View } from "react-native";
-import { Colors, Typography, Containers, Spacing } from "../styles";
-import { Button } from "../styles/button";
+import { Colors, Containers, Typography, Spacing } from '../styles'
+import { PrimaryBtn } from "../styles/button";
 import { InputField } from "../styles/inputfield";
 import { Heading } from "../styles/heading";
 
-const Login = () => {
+const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [mode, setMode] = useState("login");
+    const [mode, setMode] = useState("register");
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((store) => store.user.accessToken);
-    useEffect(() => {
+
+    useEffect( () => {
         if (accessToken) {
-            navigate("/main");
+        navigate("/main");
         }
     }, [accessToken])
 
@@ -33,7 +34,6 @@ const Login = () => {
             },
             body: JSON.stringify({username: username, password: password })
         }
-        
         fetch(API_URL(mode), options)
             .then(response => response.json())
             .then(data => {
@@ -45,7 +45,7 @@ const Login = () => {
                         dispatch(user.actions.setError(null));
                     });
                 } else {
-                    alert("error, could not find user - make sure you've registered and that the password is correct ");
+                    alert("error, doesn't work...");
                     batch (() => {
                         dispatch(user.actions.setUsername(null));
                         dispatch(user.actions.setUserId(null))
@@ -55,81 +55,73 @@ const Login = () => {
                 }
             })
     }
-    
-    return (   
-        <View style={styles.container}>
-            <Heading/> 
+
+    return (
+        <View 
+            style={styles.container} 
+            onPress={(onFormSubmit)}>
+            <Heading/>
             <View style={styles.container} onPress={(onFormSubmit)}>
                 <View style={styles.innerContainer}>
-                    <Text style={styles.h2}>Login</Text>
+                    <Text style={styles.h2}>Register</Text>
                     <InputField
-                        placeholder="Username" 
+                        placeholder="Enter username"
                         onChangeText={setUsername}
                         value={username}
-                        autoCapitalize="none" 
+                        autoCapitalize="none"
                         returnKeyType="next" 
-                        blurOnSubmit={false}
+                        blurOnSubmit={false} 
                         onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
                     />
                     <InputField 
-                        placeholder="Password" 
+                        placeholder="Enter Password" 
                         blurOnSubmit={false}
                         secureTextEntry={true}
-                        textContentType={password}
                         onChangeText={setPassword}
-                        returnKeyType="next"
+                        returnKeyType="next" 
                     />
-                    <Button 
-                        title="Login"
+                    <PrimaryBtn 
+                        title="Sign up"
                         onPress={(onFormSubmit)}
                         type="submit"
                     />
-                    <View style={{paddingTop: Spacing.spacing.S}}>
-                        <Text style={styles.text}>Don't have an account?
-                            <Link to='/register'>
-                                <Text style={styles.linkText}>Sign up here</Text>
-                            </Link>
-                        </Text>
-                    </View>
+                    <Text style={styles.text}>
+                        {password && password.length < 8
+                            ? 'Password must be over 8 characters'
+                            : ''}
+                        {error !== null && (
+                            <Text style={{ fontSize: '21px', color: 'white' }}>{error}</Text>
+                        )}
+                    </Text>
                 </View>
-            </View>
+            </View>  
         </View>
-        
     )
 }
+
 const styles = StyleSheet.create({
     container: {
-        ...Containers.outerContainer,
-        justifyContent: "center",
+      ...Containers.outerContainer,
+      justifyContent: "center"
     },
 
     innerContainer: {
-        width: 300,
-        alignContent: "flex-start"
+        gap: Spacing.spacing.M,
+        alignContent: "flex-start",
+        width: 300
     },
 
     h2: {
         ...Typography.h2,
         color: Colors.palette.lavenderBlush,
-        paddingBottom: Spacing.spacing.XS,
+        paddingBottom: Spacing.spacing.XS
     },
   
     text: {
-        ...Typography.body2,
-        color: Colors.palette.lavenderBlush,
-        textAlign: "center",
+      ...Typography.body2,
+      color: Colors.palette.lavenderBlush,
+      textAlign: "center"
     },
-
-    linkText: {
-        ...Typography.body2,
-        color: Colors.palette.frostbite,
-        paddingTop: 3,
-        paddingLeft: 4,
-    }
 });
 
-export default Login;
-
-
-
-  
+export default Register;

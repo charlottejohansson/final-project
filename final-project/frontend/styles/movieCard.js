@@ -1,4 +1,3 @@
-
 import { StyleSheet, View, Image, Text } from "react-native"
 import { Typography, Colors } from '.'
 import { LinearGradient } from 'expo-linear-gradient'

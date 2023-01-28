@@ -1,4 +1,4 @@
-import React, {useEffect, useState, createRef} from "react";
+import React, {useEffect, useState} from "react";
 import user from '../reducers/user';
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate } from "react-router-native";
@@ -6,7 +6,7 @@ import { API_URL } from '../utils/utils'
 
 import { StyleSheet, Text, View } from "react-native";
 import { Colors, Containers, Typography, Spacing } from '../styles'
-import { PrimaryBtn } from "../styles/buttons";
+import { Button } from "../styles/button";
 import { InputField } from "../styles/inputfield";
 import { Heading } from "../styles/heading";
 
@@ -80,7 +80,7 @@ const Register = () => {
                         onChangeText={setPassword}
                         returnKeyType="next" 
                     />
-                    <PrimaryBtn 
+                    <Button
                         title="Sign up"
                         onPress={(onFormSubmit)}
                         type="submit"

@@ -1,4 +1,3 @@
-// import React from 'react';
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import React, {useState, useEffect} from "react";
 import { Provider } from 'react-redux';
@@ -9,12 +8,11 @@ import Login from './components/Login'
 import Register from './components/Register'
 import ProfilePage from './components/ProfilePage'
 import Notfound from './components/Notfound'
-import user from "./reducers/user";
 import profiles from "./reducers/profiles";
-
-
 import MovieDetails from './components/MovieDetails'
-import MovieDetailsSearch from './components/MovieDetailsSearch' 
+import MovieDetailsSearch from './components/MovieDetailsSearch'
+
+import user from "./reducers/user"; 
 import { POPULARMOVIE_URL } from './utils/utils'
 
 const reducer = combineReducers({

@@ -2,9 +2,10 @@ import React, {useState } from "react";
 import { Link } from 'react-router-native';
 import { StyleSheet, Text, View, TextInput, Image, ScrollView } from "react-native";
 import { Typography, Containers, Spacing, Colors } from '../styles'
-import { PrimaryIconBtn } from "../styles/buttons";
 import { MovieCard } from "../styles/movieCard";
+import { IconBtn } from "../styles/iconButton";
 import { FontAwesome5 } from '@expo/vector-icons'; 
+
 
 const Start = ({movies}) => {
 
@@ -68,7 +69,7 @@ const Start = ({movies}) => {
                 setTitle(text);
                 setSearchResults(null);
             }}/>
-            <PrimaryIconBtn
+            <IconBtn
               name={"search"}
               size={24}
               onPress={(onFormSubmit)}
@@ -106,7 +107,7 @@ const Start = ({movies}) => {
           paddingVertical: Spacing.spacing.S, 
           width: "100%"}}>
           <Text style={styles.h2}>New Releases</Text>
-          <View style={styles.movieCardContainer}>
+          <View style={styles.movieCardWrapper}>
             {movies.map((movie) => (
               <Link
                 key={movie.id}
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.spacing.S
   },
 
-  movieCardContainer: {
+  movieCardWrapper: {
     justifyContent: "center",
     paddingVertical: Spacing.spacing.XS, 
     width: "100%",

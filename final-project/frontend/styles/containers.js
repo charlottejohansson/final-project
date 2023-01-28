@@ -1,4 +1,4 @@
-import { palette } from "./colors";
+import { palette } from "./atoms/colors";
 
 export const outerContainer = {
     backgroundColor: palette.xiketic,

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-native";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors, Containers, Typography, Spacing } from '../styles'
 import { Heading } from '../styles/heading'
-import { Button } from "../styles/button";
+import { PrimaryBtn} from "../styles/button";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 
@@ -59,7 +59,7 @@ const ProfilePage = () => {
                     size={100} 
                     color={Colors.palette.lavenderBlush} /> 
             </View>
-            <Button 
+            <PrimaryBtn 
                     title="Sign out"
                     onPress={() => { navigate("/"); dispatch(user.actions.setAccessToken(null));}} //doesn't work to sign in again, you need to reload the page
                     type="submit"
