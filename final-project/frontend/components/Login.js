@@ -18,6 +18,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const accessToken = useSelector((store) => store.user.accessToken);
+
     useEffect(() => {
         if (accessToken) {
             navigate("/main");
@@ -55,7 +56,6 @@ const Login = () => {
                 }
             })
     }
-    
     return (   
         <View style={styles.container}>
             <Heading/> 
@@ -69,7 +69,7 @@ const Login = () => {
                         autoCapitalize="none" 
                         returnKeyType="next" 
                         blurOnSubmit={false}
-                        onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()} // meaning?
+                        onSubmitEditing={() => passwordInputRef.current &&  passwordInputRef.current.focus()}
                     />
                     <InputField 
                         placeholder="Password" 

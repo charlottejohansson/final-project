@@ -4,12 +4,14 @@ import { useParams } from 'react-router-native';
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { Typography, Containers, Spacing, Colors} from '../styles'
 import { Heading } from '../styles/heading';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const MovieDetailsSearch = () => {
 
      const [ movieDetails, setMovieDetails ] = useState([]);
      const [ movieSource, setMovieSource ] = useState([]);
      const { movie_id } = useParams();
+     const [loading, setLoading] = useState(true);
      
      const options = {
       method: 'GET',
@@ -43,9 +45,24 @@ const MovieDetailsSearch = () => {
       .then((json) => {
         const filterList = filterResponse(json)
         setMovieSource(filterList)})
+      .finally(() => {
+          setLoading(false);
+      })
       .catch(err => console.error(err));
   }, [movie_id])
 
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <FontAwesome5 
+            style={styles.icon} 
+            name="spinner" 
+            size={24} 
+            color={Colors.palette.lavenderBlush} />
+        <Text style={styles.h2}>Loading...</Text>
+      </View>
+    );
+  }
     return (
       <View style={{...Containers.outerContainer}}>
         <Image
@@ -74,6 +91,11 @@ const MovieDetailsSearch = () => {
     } 
 
 const styles = StyleSheet.create({
+  container: {
+    ...Containers.outerContainer,
+    justifyContent: "center"
+  },
+
   background: {
     width: '100%', 
     height: '100%', 
@@ -94,7 +116,7 @@ const styles = StyleSheet.create({
     height: "80%",
     width: 340
   },
-
+  
   poster: {
     width: 240,
     height: 350, 

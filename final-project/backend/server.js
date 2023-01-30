@@ -41,7 +41,7 @@ const User = mongoose.model("User", UserSchema);
 
 
 app.get("/", (req, res) => {
-  res.send("Hello Technigo!");
+  res.send("Hello!");
 });
 
 app.post("/register", async (req, res) => {
@@ -68,7 +68,7 @@ app.post("/register", async (req, res) => {
   } catch(error) {
       res.status(400).json({
         success: false,
-        response: error
+        response: "Sorry :( Could not register the user"
       });
   }
 });
@@ -96,7 +96,7 @@ app.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      response: error
+      response: "Oops, sorry! It did not work, please try again!"
     });
   }
 });
@@ -115,7 +115,7 @@ const authenticateUser = async (req, res, next) => {
     }
   } catch (error) {
     res.status(400).json({
-      response: error,
+      response: "Oops, sorry! It did not work, please try again!",
       success: false
     })
   }
@@ -136,11 +136,11 @@ const ProfileSchema = new mongoose.Schema({
 }); 
 
 
-const Thought = mongoose.model("Profile", ProfileSchema);
+const Profile = mongoose.model("Profile", ProfileSchema);
 
 app.get("/profiles", authenticateUser);
 app.get("/profiles", async (req, res)=> {
-  const profiles = await Thought.find({});
+  const profiles = await Profile.find({});
   res.status(200).json({success: true, response: profiles});
 });
 
@@ -148,15 +148,14 @@ app.post("/profiles", authenticateUser)
 app.post("/profiles", async (req, res) => {
   const { message } = req.body;
   try {
-    const newThought = await new Thought({message}).save();
-    res.status(201).json({success: true, response: newThought});
+    const newProfile = await new Profile({message}).save();
+    res.status(201).json({success: true, response: newProfile});
   } catch (error) {
-    res.status(400).json({success: false, response: error});
+    res.status(400).json({success: false, response: "Oops, sorry! It did not work, please try again!"});
   }
 });
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
 });
   

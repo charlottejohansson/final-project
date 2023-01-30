@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import user from '../reducers/user';
 import { useDispatch, useSelector, Provider } from "react-redux";
 import profiles from "../reducers/profiles.js";
@@ -18,6 +18,7 @@ const ProfilePage = () => {
     const dispatch = useDispatch();
     const accessToken = useSelector((store) => store.user.accessToken);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     useEffect( () => {
         if (!accessToken) {
@@ -45,8 +46,25 @@ const ProfilePage = () => {
                     dispatch(profiles.actions.setError(data.response));
                 }
             })
+            .finally(() => {
+                setTimeout(() => {
+                    setLoading(false);
+                  }, 1000);
+              })
     }, []);
 
+    if (loading) {
+        return (
+            <View style={styles.loaderContainer}>
+        <FontAwesome5 
+            style={styles.icon} 
+            name="spinner" 
+            size={24} 
+            color={Colors.palette.lavenderBlush} />
+        <Text style={styles.h2}>Loading...</Text>
+      </View>
+        );
+      }
     return (
         <View style={{...Containers.outerContainer}}>
             <Heading/>
@@ -78,6 +96,11 @@ const styles = StyleSheet.create({
         opacity: "40%",
         height: "70%"
     },
+
+    loaderContainer: {
+        ...Containers.outerContainer,
+        justifyContent: "center"
+      },
 
     h2: {
         ...Typography.h2,

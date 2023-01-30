@@ -26,7 +26,6 @@ const Start = ({movies}) => {
           return response.json();
   }).then(function (data) {
       setSearchResults(data.results)
-      console.log(data)
   }).catch(function (error) {
       console.warn(error);
   });
