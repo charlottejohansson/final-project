@@ -23,13 +23,13 @@ const MovieDetails = () => {
     <View style={{...Containers.outerContainer}}>
         <Image
           style={styles.background}
-          source={{ uri: `https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}` }}/>
+          source={{ uri: `https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}`}} />
         <View style={styles.overlay}/>
       <Heading/>
       <ScrollView style={styles.innerContainer}>
-        <Image
-          style={styles.poster}
-          source={{ uri: `https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}` }}/>
+      <Image
+         style={styles.poster}
+         source={{ uri:`https://image.tmdb.org/t/p/w342/${movieDetails.poster_path}`}} />
         <View>
           <Text style={styles.h2}>{movieDetails.title}</Text>
           <Text style={styles.h3}>Rating: {Math.round(movieDetails.vote_average * 10) / 10}</Text>
