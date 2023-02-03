@@ -45,7 +45,7 @@ const Register = () => {
                         dispatch(user.actions.setError(null));
                     });
                 } else {
-                    alert("error, doesn't work...");
+                    alert("Password must be over 8 characters.");
                     batch (() => {
                         dispatch(user.actions.setUsername(null));
                         dispatch(user.actions.setUserId(null))

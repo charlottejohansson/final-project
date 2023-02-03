@@ -5,20 +5,39 @@ import { MOVIEDETAILS_URL } from '../utils/utils';
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { Colors, Typography, Spacing, Containers } from '../styles'
 import { Heading } from '../styles/heading';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 const MovieDetails = () => {
   const [ movieDetails, setMovieDetails ] = useState({});
   const { movie_id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(MOVIEDETAILS_URL(movie_id))
       .then((res) => res.json())
       .then((data) => {
         setMovieDetails(data);
-      });
+      })
+      .finally(() => {
+        setTimeout(() => {
+            setLoading(false);
+          }, 500);
+      })
   }, []);
 
+  if (loading) {
+    return (
+        <View style={styles.container}>
+    <FontAwesome5 
+        style={styles.icon} 
+        name="spinner" 
+        size={24} 
+        color={Colors.palette.lavenderBlush} />
+    <Text style={styles.h2}>Loading...</Text>
+  </View>
+    );
+  }
   return (
     <View style={{...Containers.outerContainer}}>
         <Image
@@ -41,6 +60,11 @@ const MovieDetails = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    ...Containers.outerContainer,
+    justifyContent: "center"
+  },
+
   background: {
     width: '100%', 
     height: '100%', 
